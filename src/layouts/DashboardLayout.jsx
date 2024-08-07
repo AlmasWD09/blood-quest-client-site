@@ -1,12 +1,11 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/shared/navbar/Navbar";
+import Sidebar from "../components/shared/sidebar/Sidebar";
 
 
-const MainLayout = () => {
+const DashboardLayout = () => {
     return (
         <div>
-            {/* navbar */}
-            <Navbar />
+            <Sidebar />
             <div>
                 <Outlet />
             </div>
@@ -14,4 +13,4 @@ const MainLayout = () => {
     );
 };
 
-export default MainLayout;
+export default DashboardLayout;
