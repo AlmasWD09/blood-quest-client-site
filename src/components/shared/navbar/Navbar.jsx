@@ -45,7 +45,7 @@ const Navbar = () => {
                         <Link to='/login'>
                             <button className=" py-2 mt-2">Login</button>
                         </Link>
-                        <Link to='/signup'>
+                        <Link to='/sign-up'>
                             <button className="px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Sign Up</button>
                         </Link>
                     </div>
@@ -92,7 +92,7 @@ const Navbar = () => {
                                 <Link to='/login'>
                                     <button className="w-full py-2 mt-2">Login</button>
                                 </Link>
-                                <Link to='/signup'>
+                                <Link to='/sign-up'>
                                     <button className="w-full px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Sign Up</button>
                                 </Link>
                             </div>
