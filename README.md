@@ -23,6 +23,7 @@
 - [prop-types](https://www.npmjs.com/package/prop-types?activeTab=readme/)
 - [react-icon](https://react-icons.github.io/react-icons/)
 - [react-hook-form](https://react-hook-form.com/)
+- [firebase](https://firebase.google.com/)
 
 
 

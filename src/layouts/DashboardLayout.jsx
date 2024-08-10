@@ -4,11 +4,13 @@ import Sidebar from "../components/shared/sidebar/Sidebar";
 
 const DashboardLayout = () => {
     return (
-        <div>
-            <Sidebar />
-            <div>
-                <Outlet />
-            </div>
+        <div className="flex gap-3">
+          <div>
+          <Sidebar />
+          </div>
+          <div>
+            <Outlet />
+          </div>
         </div>
     );
 };

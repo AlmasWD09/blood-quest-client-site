@@ -10,7 +10,7 @@ export default {
         'primary':'#b91c1c', // red-700
         // 'primaryGray':'#fee2e2', // red-300
         // 'primary':'#22c55e', // red-700
-        'secondery':'#fee2e2', // red-100
+        'secondery':'#f87171', // red-400
         'primaryGray' : '#fef2f2', // red-50
       },
       fontFamily: {

@@ -8,7 +8,10 @@ import { TfiClose } from "react-icons/tfi";
 // component(get data)
 import districts from "../../components/district.json"
 import upazilas from "../../components/upazila.json"
+import useAuth from "../../hooks/useAuth";
 const SignUp = () => {
+    const {user} = useAuth();
+    console.log(user);
     const navigate = useNavigate();
     const {register,handleSubmit,formState: { errors },} = useForm();
     const [showPassword, setShowPassword] = useState(false);
@@ -19,13 +22,16 @@ const SignUp = () => {
 
     const onSubmit = (data) => {
       console.log(data);
+
+
+
+
+
+
+
       const password = data.password;
       const confirmPassword = data.confirm_password;
-
-
-
     // password validation
-    // showConfirmPassword('')
       if((password === confirmPassword) && (password.length === confirmPassword.length)){
         setShowConfirmPassword("")
         
@@ -235,7 +241,7 @@ const SignUp = () => {
                             {/* ********* input filed start ******* */}
                             <div className="flex flex-col md:flex-row gap-0 md:gap-4">
                                 {/* user name */}
-                                {/* <div className="w-full md:w-1/2 mt-3 md:mt-6">
+                                <div className="w-full md:w-1/2 mt-3 md:mt-6">
                                     <label htmlFor="blood_group" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                                         Your name
                                     </label>
@@ -246,10 +252,10 @@ const SignUp = () => {
                                             {...register("name", { required: true })}
                                             className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Your Name" />
                                     </div>
-                                </div> */}
+                                </div>
 
                                 {/* user email */}
-                                {/* <div className="w-full md:w-1/2 mt-3 md:mt-6">
+                                <div className="w-full md:w-1/2 mt-3 md:mt-6">
                                     <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                                         Your email
                                     </label>
@@ -261,13 +267,13 @@ const SignUp = () => {
                                             {...register("email", { required: true })}
                                             className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
                                     </div>
-                                </div> */}
+                                </div>
                             </div>
 
 
                             <div className="flex flex-col md:flex-row gap-0 md:gap-4">
-
-                                {/* <div className="w-full md:w-1/2 mt-3 md:mt-6">
+                                {/* user district */}
+                                <div className="w-full md:w-1/2 mt-3 md:mt-6">
                                     <label htmlFor="district" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                                         Your district
                                     </label>
@@ -284,9 +290,10 @@ const SignUp = () => {
                                             }
                                         </select>
                                     </div>
-                                </div> */}
-
-                                {/* <div className="w-full md:w-1/2 mt-3 md:mt-6">
+                                </div>
+                                
+                                {/* user upazila */}
+                                <div className="w-full md:w-1/2 mt-3 md:mt-6">
                                     <label htmlFor="upazila" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                                         Your upazila
                                     </label>
@@ -302,14 +309,14 @@ const SignUp = () => {
                                             }
                                         </select>
                                     </div>
-                                </div> */}
+                                </div>
                             </div>
 
 
 
                             <div className="flex flex-col md:flex-row gap-0 md:gap-4">
                                 {/* user photo url */}
-                                {/* <div className="w-full md:w-1/2 mt-3 md:mt-6">
+                                <div className="w-full md:w-1/2 mt-3 md:mt-6">
                                     <label htmlFor="photoURL" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                                         Your photoURL
                                     </label>
@@ -317,11 +324,11 @@ const SignUp = () => {
                                     <div>
                                         <input type="photoURL" name="photo" className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="photo URL"  {...register("photo", { required: true })} />
                                     </div>
-                                </div> */}
+                                </div>
 
 
-
-                                {/* <div className="w-full md:w-1/2 mt-3 md:mt-6">
+                                {/* blood group */}
+                                <div className="w-full md:w-1/2 mt-3 md:mt-6">
                                     <label htmlFor="blood_group" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                                         Your blood group
                                     </label>
@@ -337,7 +344,7 @@ const SignUp = () => {
                                             }
                                         </select>
                                     </div>
-                                </div> */}
+                                </div>
                             </div>
 
                             <div className="flex flex-col md:flex-row gap-0 md:gap-4">

@@ -1,11 +1,15 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import {  useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/shared/navbar/Navbar";
 import { TfiClose } from "react-icons/tfi";
+import useAuth from "../../hooks/useAuth";
+
 
 const Login = () => {
+    const {user} = useAuth()
+  console.log(user);
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
 

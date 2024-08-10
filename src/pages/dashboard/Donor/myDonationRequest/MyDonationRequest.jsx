@@ -3,7 +3,7 @@
 const MyDonationRequest = () => {
     return (
         <div>
-            <h1>my dontainon request page</h1>
+            <h1>my donation request page</h1>
         </div>
     );
 };
