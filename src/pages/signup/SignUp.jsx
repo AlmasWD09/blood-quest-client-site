@@ -9,40 +9,22 @@ import { TfiClose } from "react-icons/tfi";
 import districts from "../../components/district.json"
 import upazilas from "../../components/upazila.json"
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_API_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const SignUp = () => {
-    const {user} = useAuth();
-    console.log(user);
+    const { creatUser, setUser, updateUser, } = useAuth();
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
-    const {register,handleSubmit,formState: { errors },} = useForm();
+    const { register, handleSubmit, formState: { errors }, } = useForm();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const [selectedDistrict, setSelectedDistrict] = useState();
     const [selectedUpazilas, setSelectedUpazilas] = useState([]);
-
-    const onSubmit = (data) => {
-      console.log(data);
-
-
-
-
-
-
-
-      const password = data.password;
-      const confirmPassword = data.confirm_password;
-    // password validation
-      if((password === confirmPassword) && (password.length === confirmPassword.length)){
-        setShowConfirmPassword("")
-        
-      }
-      else{
-        setShowConfirmPassword("confirm_password doesn't match")
-      
-      }
-    }
-
-
 
     // handle select district
     const handleSelectDistrict = (e) => {
@@ -52,8 +34,6 @@ const SignUp = () => {
 
     useEffect(() => {
         const findDistrict = districts.find(district => district?.name === selectedDistrict);
-        console.log(findDistrict);
-
         // Filter upzaila based select destrict
         const filteredUpazilas = upazilas.filter(upazila => upazila?.district_id === findDistrict?.id);
         setSelectedUpazilas(filteredUpazilas);
@@ -62,172 +42,70 @@ const SignUp = () => {
 
     // blood group data create
     const blooGroup = [' A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-   
+
     // handle back
-    const handleBack = () =>{
+    const handleBack = () => {
         navigate(-1)
     }
+
+    const onSubmit = async (data) => {
+        console.log(data);
+        const password = data.password;
+        const confirmPassword = data.confirm_password;
+        // password validation
+        if ((password === confirmPassword) && (password.length === confirmPassword.length)) {
+            setShowConfirmPassword("")
+
+        }
+        else {
+            setShowConfirmPassword("confirm_password doesn't match")
+
+        }
+
+        //   user create
+        creatUser(data.email, data.password)
+            .then(result => {
+                const loggendUser = result.user
+                toast.success('User Created Successfully')
+                //   navigate('/')
+
+                // update profile
+                updateUser(data.name, data.photo)
+                setUser({ ...loggendUser, photoURL: data.photo, displayName: data.name })
+
+            })
+
+
+        const imageFile = { image: data.image[0] }
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
+        
+            // user information
+            const userInfo = {
+                role: 'donar',
+                status: 'active',
+                name: data.name,
+                email: data.email,
+                image:res.data.data.display_url,
+                blood_group: data.blood_group,
+                district: data.district,
+                upazila: data.upazila,
+                Date: new Date(),
+            }
+
+            // post request here.....
+
+            const { response } = await axiosPublic.post('/users/api/create', userInfo)
+
+            console.log(response);
+
+    }
+
     return (
-        // <div>
-        //     <Navbar />
 
-        //     <div className="flex flex-col md:flex-row justify-between my-14 w-[94%] lg:max-w-6xl mx-auto">
-        //         <img className="w-full md:w-[35%]" src="https://i.ibb.co/gw8szCN/humans-2.png" alt="" />
-        //         <div className="w-full md:w-[65%]">
-        //             <h2 className="mb-8 text-center text-6xl text-[#ff0000] font-bold font-poetsen">Register Now!</h2>
-        //             <div className="card shrink-0 w-full lg:w-[80%] mx-auto shadow-2xl bg-[#ffd3cb]">
-        //                 <form className="card-body space-y-4" onSubmit={handleSubmit(onSubmit)}>
-        //                     <div className="flex flex-col md:flex-row justify-between gap-4">
-
-        //                         <div className="form-control w-full md:w-1/2">
-        //                             <label className="label">
-        //                                 <span className="label-text text-black font-bold text-base">Name</span>
-        //                             </label>
-        //                             <input type="text" placeholder="Your name" className="input input-bordered" {...register('name', { required: true })} />
-        //                             {errors.name && <span className="text-red-600">Name is required</span>}
-        //                         </div>
-        //                         <div className="form-control w-full md:w-1/2">
-        //                             <label className="label">
-        //                                 <span className="label-text text-black font-bold text-base">Email</span>
-        //                             </label>
-        //                             <input type="email" placeholder="email" className="input input-bordered" {...register('email', { required: true })} />
-        //                             {errors.email && <span className="text-red-600">Email is required</span>}
-        //                         </div>
-        //                     </div>
-
-        //                     {/* division for */}
-        //                     <div className="flex flex-col md:flex-row justify-between gap-4">
-        //                         <div className="form-control w-full md:w-1/2">
-        //                             <label className="mb-2 font-bold text-base text-black" htmlFor="division">Division</label>
-        //                             <select
-        //                                 {...register('division', { required: true })}
-        //                                 value={selectedDivision}
-        //                                 onChange={handleDivisionChange}
-        //                                 id="division"
-        //                                 className="p-2 rounded-lg"
-        //                             >
-        //                                 {allDivision.map((item, index) => (
-        //                                     <option key={index} value={item.name}>{item.name}</option>
-        //                                 ))}
-        //                             </select>
-        //                             {errors.division && <span className="text-red-600">Division is required</span>}
-        //                         </div>
-
-        //                         {/* district for */}
-        //                         <div className="form-control w-full md:w-1/2">
-        //                             <label className="mb-2 font-bold text-base text-black" htmlFor="district">District</label>
-        //                             <select
-        //                                 {...register('district', { required: true })}
-        //                                 onChange={handleDistrictChange}
-        //                                 id="district"
-        //                                 className="p-2 rounded-lg">
-        //                                 <option value="" disabled>Select district</option>
-        //                                 {allDistricts.map((district, index) => (
-        //                                     <option key={index} value={district}>{district}</option>
-        //                                 ))}
-        //                             </select>
-        //                             {errors.district && <span className="text-red-600">District is required</span>}
-        //                         </div>
-        //                     </div>
-
-        //                     {/* upziala for */}
-        //                     <div className="flex flex-col md:flex-row justify-between gap-4">
-        //                         <div className="form-control w-full md:w-1/2">
-        //                             <label className="mb-2 font-bold text-base text-black" htmlFor="upazila">Upazila</label>
-        //                             <select
-
-        //                                 {...register('upazila', { required: true })}
-        //                                 id="upazila"
-        //                                 className="p-2 rounded-lg">
-        //                                 <option value="" disabled>Select district than upazila</option>
-        //                                 {expectedUpazilas.map((upazila, index) => (
-        //                                     <option key={index} value={upazila}>{upazila}</option>
-        //                                 ))}
-        //                             </select>
-        //                             {errors.upazila && <span className="text-red-600">Upazila is required</span>}
-        //                         </div>
-        //                         <div className="form-control w-full md:w-1/2">
-        //                             <label className="mb-2 font-bold text-base text-black" htmlFor="district">Blood Group</label>
-        //                             <select
-        //                                 {...register('blood', { required: true })}
-        //                                 id="blood"
-        //                                 className="p-2 rounded-lg">
-        //                                 <option value="" disabled>select blood group</option>
-        //                                 <option value="A+">A+</option>
-        //                                 <option value="A-">A-</option>
-        //                                 <option value="B+">B+</option>
-        //                                 <option value="B-">B-</option>
-        //                                 <option value="AB+">AB+</option>
-        //                                 <option value="AB-">AB-</option>
-        //                                 <option value="O+">O+</option>
-        //                                 <option value="O-">O-</option>
-        //                             </select>
-        //                             {errors.blood && <span className="text-red-600">Blood group is required</span>}
-        //                         </div>
-        //                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-        //                     <div className="flex flex-col md:flex-row justify-between gap-4">
-        //                         <div className="form-control w-full md:w-1/2 relative">
-        //                             <label className="label">
-        //                                 <span className="label-text text-black font-bold text-base">Password</span>
-        //                             </label>
-        //                             <input
-        //                                 type={showPassword ? "text" : "password"} placeholder="password"
-        //                                 className="input input-bordered"
-        //                                 {...register('password', { required: true })} />
-        //                             <span onClick={() => setShowPassword(!showPassword)} className="cursor-pointer absolute right-4 bottom-4 text-xl">
-        //                                 {
-        //                                     showPassword ? <IoEyeOff /> : <IoEye />
-        //                                 }
-        //                             </span>
-        //                             <button className="">{ }</button>
-        //                             {errors.password && <span className="text-red-600">Password is required</span>}
-        //                         </div>
-        //                         <div className="form-control w-full md:w-1/2 relative">
-        //                             <label className="label">
-        //                                 <span className="label-text text-black font-bold text-base">Confirm Password</span>
-        //                             </label>
-        //                             <input
-        //                                 type={showPassword ? "text" : "password"}
-        //                                 placeholder="confirm password" className="input input-bordered"
-        //                                 {...register('confirm_password', { required: true })} />
-        //                             <span onClick={() => setShowPassword(!showPassword)} className="cursor-pointer absolute right-4 bottom-4 text-xl">
-        //                                 {
-        //                                     showPassword ? <IoEyeOff /> : <IoEye />
-        //                                 }
-        //                             </span>
-        //                             {errors.confirm_password && <span className="text-red-600">Confirm password is required</span>}
-        //                         </div>
-        //                     </div>
-        //                     <div className="form-control">
-        //                         <label className="mb-2 font-bold text-base text-black" htmlFor="">Your Profile</label>
-        //                         <input type="file" className="file-input w-full max-w-xs" {...register('profile', { required: true })} />
-        //                         {errors.profile && <span className="text-red-600">Profile picture is required</span>}
-        //                     </div>
-        //                     <div className="form-control mt-6">
-        //                         <button className="btn bg-white font-bold text-black">Register</button>
-        //                     </div>
-        //                     {
-        //                         registerError && <p className="text-red-500 font-semibold text-center">{registerError}</p>
-        //                     }
-        //                     <p className="mt-6">Already have an account? <Link className="text-green-500 font-bold" to='/login'>Login Now</Link>
-        //                     </p>
-        //                 </form>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
         <>
             <Navbar />
             <section className="">
@@ -291,7 +169,7 @@ const SignUp = () => {
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 {/* user upazila */}
                                 <div className="w-full md:w-1/2 mt-3 md:mt-6">
                                     <label htmlFor="upazila" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
@@ -317,13 +195,21 @@ const SignUp = () => {
                             <div className="flex flex-col md:flex-row gap-0 md:gap-4">
                                 {/* user photo url */}
                                 <div className="w-full md:w-1/2 mt-3 md:mt-6">
-                                    <label htmlFor="photoURL" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
+                                    {/* <label htmlFor="photoURL" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                                         Your photoURL
                                     </label>
 
                                     <div>
                                         <input type="photoURL" name="photo" className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="photo URL"  {...register("photo", { required: true })} />
-                                    </div>
+                                    </div> */}
+                                    <label htmlFor="image" className="block text-sm text-gray-500 dark:text-gray-300">Image</label>
+                                    <input
+                                        type="file"
+                                        name="image"
+                                        id="image"
+                                        {...register("image", { required: true })}
+                                        className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-40 dark:border-primary dark:bg-gray-900 dark:focus:border-primary"
+                                    />
                                 </div>
 
 

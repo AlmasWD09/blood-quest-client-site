@@ -24,6 +24,7 @@
 - [react-icon](https://react-icons.github.io/react-icons/)
 - [react-hook-form](https://react-hook-form.com/)
 - [firebase](https://firebase.google.com/)
+- [react-hoat-toast](https://react-hot-toast.com/)
 
 
 

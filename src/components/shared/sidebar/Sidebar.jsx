@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 
 const Sidebar = () => {
-   const role = 'volunteer'
+   const role = 'donor'
     return (
         <>
         <div className="bg-gray-100 w-[200px] h-screen px-4">
