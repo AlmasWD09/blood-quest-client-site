@@ -6,11 +6,14 @@ import districts from "../../../../components/district.json"
 import upazilas from "../../../../components/upazila.json"
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 
 const CreateDonationForm = () => {
-const {user} = useAuth();
-const axiosSecure = useAxiosSecure();
+    const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors }, } = useForm();
     const [selectedDistrict, setSelectedDistrict] = useState();
     const [selectedUpazilas, setSelectedUpazilas] = useState([]);
@@ -37,24 +40,32 @@ const axiosSecure = useAxiosSecure();
     const onSubmit = async (data) => {
 
         //  user information
-          const donorInfo = {
-            status:'pending',
-            requesterName:data.requester_name,
-            requesterEmail:data.requester_email,
-            recipientName:data.recipient_name,
-            hospitalName:data.hospital_name,
-            district:data.district,
-            upazila:data.upazila,
-            donationDate:data.donation_date,
-            donationTime:data.donation_time,
-            fullAddress:data.full_address,
-            bloodGroup:data.blood_group,
-            description:data.request_message,
+        const donorInfo = {
+            status: 'pending',
+            requesterName: data.requester_name,
+            requesterEmail: data.requester_email,
+            recipientName: data.recipient_name,
+            hospitalName: data.hospital_name,
+            district: data.district,
+            upazila: data.upazila,
+            donationDate: data.donation_date,
+            donationTime: data.donation_time,
+            fullAddress: data.full_address,
+            bloodGroup: data.blood_group,
+            description: data.request_message,
         }
 
         // post request here.....
 
-        const { response } = await axiosSecure.post('/donor/donation/request/api/create', donorInfo)
+        try {
+            const { data: donationRequestData } = await axiosSecure.post('/donor/donation/request/api/create', donorInfo)
+            console.log(donationRequestData);
+            toast.success('Donation create successfully');
+            navigate('/dashboard/my-donation-request')
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
     return (
         <div className="relative w-full max-w-4xl mx-auto bg-primaryGray shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] px-8 rounded-lg">

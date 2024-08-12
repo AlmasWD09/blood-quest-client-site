@@ -85,7 +85,7 @@ const SignUp = () => {
         
             // user information
             const userInfo = {
-                role: 'donar',
+                role: 'donor',
                 status: 'active',
                 name: data.name,
                 email: data.email,
