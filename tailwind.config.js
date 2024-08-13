@@ -12,6 +12,8 @@ export default {
         // 'primary':'#22c55e', // red-700
         'secondery':'#f87171', // red-400
         'primaryGray' : '#fef2f2', // red-50
+        'iconEdditColor':'green',
+        'iconDelettColor':'red',
       },
       fontFamily: {
         'lato': "'Lato', 'sans-serif'",

@@ -25,6 +25,7 @@
 - [react-hook-form](https://react-hook-form.com/)
 - [firebase](https://firebase.google.com/)
 - [react-hoat-toast](https://react-hot-toast.com/)
+- [@headlessui/react](https://headlessui.com/)
 
 
 

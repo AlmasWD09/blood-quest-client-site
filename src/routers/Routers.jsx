@@ -17,6 +17,7 @@ import DonorHome from "../pages/dashboard/Donor/donorHome/DonorHome";
 import MyDonationRequest from "../pages/dashboard/Donor/myDonationRequest/MyDonationRequest";
 import CreateDonationRequest from "../pages/dashboard/Donor/createDonationRequest/CreateDonationRequest";
 import VolunteerHome from "../pages/dashboard/volunteer/volunteerHome/VolunteerHome";
+import MyDonationEdit from "../pages/dashboard/Donor/myDonationRequest/MyDonationEdit";
 
 
 const router = createBrowserRouter([
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
         {
           path:'my-donation-request',
           element:<MyDonationRequest />
+        },
+        {
+          path:'my-donation-eddit/:id',
+          element:<MyDonationEdit />
         },
         {
           path:'create-donation-request',

@@ -2,10 +2,14 @@ import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import { TbTrashXFilled } from "react-icons/tb";
+import { FiEdit } from "react-icons/fi";
+import { useNavigate } from 'react-router-dom';
+
 
 const DonorRow = ({ category, refetch }) => {
     const { _id, recipientName, district, upazila, donationDate, donationTime, status, } = category || {};
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     // time convert 24 hour to 12 hour
     const hourConvert = (time24) => {
@@ -29,7 +33,12 @@ const DonorRow = ({ category, refetch }) => {
     };
     const convertTime = hourConvert(donationTime);
 
-
+    // Eddit for data by mongoDB
+    const handleEddit = async (id) => {
+        const { res } = await axiosSecure.get(`/donor/donation/request/api/get/${id}`)
+        console.log(res);
+        navigate(`/dashboard/my-donation-eddit/${id}`)
+    }
     // Delete for data by mongoDB
     const handleDelete = (id) => {
         Swal.fire({
@@ -79,15 +88,14 @@ const DonorRow = ({ category, refetch }) => {
                 {status}
             </td>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                <button className="bg-green-500 px-3 py-1 rounded-md">Details</button>
-            </td>
-            <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                <button className="bg-gray-400 px-3 py-1 rounded-md">Edit</button>
+                <FiEdit
+                    onClick={() => handleEddit(_id)}
+                    className='text-iconEdditColor text-3xl cursor-pointer' />
             </td>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                 <TbTrashXFilled
                     onClick={() => handleDelete(_id)}
-                    className='text-red-500 text-3xl cursor-pointer' />
+                    className='text-iconDelettColor text-3xl cursor-pointer' />
             </td>
         </>
     );

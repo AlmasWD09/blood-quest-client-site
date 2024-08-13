@@ -2,10 +2,9 @@ import useAllDonorRequest from "../../../../hooks/useAllDonorRequest";
 import DonorRow from "../donorRow/DonorRow";
 
 
-
-
 const MyDonationRequest = () => {
     const [alldonorRequestes,refetch] = useAllDonorRequest();
+
     return (
         <>
             <div className="text-center mt-10">
@@ -60,12 +59,6 @@ const MyDonationRequest = () => {
                                         className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                                     >
                                         Status
-                                    </th>
-                                    <th
-                                        scope='col'
-                                        className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                                    >
-                                        Details
                                     </th>
                                     <th
                                         scope='col'
