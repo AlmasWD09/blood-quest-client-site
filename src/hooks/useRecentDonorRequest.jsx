@@ -7,7 +7,7 @@ const useRecentDonorRequest = () => {
     const {user} = useAuth();
     const axiosSecure = useAxiosSecure();
     
-    const { data: recentDonorRequestes = [], refetch } = useQuery({
+    const { data: recentDonorRequestes = [],refetch } = useQuery({
         queryKey: ['recent-donor-request', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/recent/donation/request/api/get/${user.email}`);

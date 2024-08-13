@@ -7,7 +7,7 @@ import useRecentDonorRequest from "../../../../hooks/useRecentDonorRequest";
 const DonorHome = () => {
     const { user } = useAuth()
     const navigate = useNavigate();
-    const[recentDonorRequestes] = useRecentDonorRequest();
+    const[recentDonorRequestes,refetch] = useRecentDonorRequest();
 
     // navigate by my-donation-request dashboard
     const handleNavigate = () => {
@@ -84,11 +84,11 @@ const DonorHome = () => {
                                     </th>
                                 </tr>
                             </thead>
-                            {/* dynamic data for......... */}
+                            {/* dynamic data for donor row */}
                             <tbody>
                                 {
                                     recentDonorRequestes.map((category, idx) => <tr key={idx}>
-                                        <DonorRow category={category} />
+                                        <DonorRow category={category} refetch={refetch}/>
 
                                     </tr>)}
                             </tbody>

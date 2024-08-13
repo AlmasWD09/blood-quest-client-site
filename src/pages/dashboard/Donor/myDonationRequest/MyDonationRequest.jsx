@@ -5,7 +5,7 @@ import DonorRow from "../donorRow/DonorRow";
 
 
 const MyDonationRequest = () => {
-    const [alldonorRequestes] = useAllDonorRequest();
+    const [alldonorRequestes,refetch] = useAllDonorRequest();
     return (
         <>
             <div className="text-center mt-10">
@@ -81,11 +81,11 @@ const MyDonationRequest = () => {
                                     </th>
                                 </tr>
                             </thead>
-                            {/* dynamic data for......... */}
+                            {/* dynamic data for donor row */}
                             <tbody>
                                 {
                                     alldonorRequestes.map((category, idx) => <tr key={idx}>
-                                        <DonorRow category={category} />
+                                        <DonorRow category={category} refetch={refetch}/>
 
                                     </tr>)}
                             </tbody>
