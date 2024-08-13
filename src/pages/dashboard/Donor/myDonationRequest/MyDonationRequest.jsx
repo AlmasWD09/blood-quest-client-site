@@ -1,19 +1,38 @@
-import useAllDonorRequest from "../../../../hooks/useAllDonorRequest";
+import { useQuery } from "@tanstack/react-query";
 import DonorRow from "../donorRow/DonorRow";
+import useAuth from "../../../../hooks/useAuth";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { useState } from "react";
 
 
 const MyDonationRequest = () => {
-    const [alldonorRequestes,refetch] = useAllDonorRequest();
+    const { user } = useAuth()
+    const axiosSecure = useAxiosSecure();
+    const [filterValue,setFilterValue] = useState('')
 
+
+
+    // get date by mongodb in transStack query
+    const { data: alldonorRequestes = [], refetch } = useQuery({
+        queryKey: ['all-donor-request', user?.email,filterValue],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/allDonor/donation/request/api/get/${user.email}?filterQuery=${filterValue}`);
+            return res.data;
+        }
+    })
+    const handleClick = (value) => {
+        setFilterValue(value)
+    }
     return (
         <>
             <div className="text-center mt-10">
                 <h1 className="text-5xl font-semibold text-green-500">My Donation Request</h1>
                 <div className="flex justify-center gap-4 pt-8">
-                    <button className="bg-gray-200 px-6 py-1 rounded">Pending</button>
-                    <button className="bg-gray-200 px-6 py-1 rounded">Inprogress</button>
-                    <button className="bg-gray-200 px-6 py-1 rounded">Done</button>
-                    <button className="bg-gray-200 px-6 py-1 rounded">Canceled</button>
+                    <button className="bg-gray-200 px-6 py-1 rounded">All</button>
+                    <button onClick={() => handleClick('pending')} className="bg-gray-200 px-6 py-1 rounded">Pending</button>
+                    <button onClick={() => handleClick('inProgress')} className="bg-gray-200 px-6 py-1 rounded">Inprogress</button>
+                    <button onClick={() => handleClick('done')} className="bg-gray-200 px-6 py-1 rounded">Done</button>
+                    <button onClick={() => handleClick('canceled')} className="bg-gray-200 px-6 py-1 rounded">Canceled</button>
                 </div>
             </div>
             {/* donation request table */}
@@ -78,7 +97,7 @@ const MyDonationRequest = () => {
                             <tbody>
                                 {
                                     alldonorRequestes.map((category, idx) => <tr key={idx}>
-                                        <DonorRow category={category} refetch={refetch}/>
+                                        <DonorRow category={category} refetch={refetch} />
 
                                     </tr>)}
                             </tbody>
