@@ -10,7 +10,7 @@ const AllUsers = () => {
 
 
     // all users data get by mongoDB
-    const { data: Allusers = [],  } = useQuery({
+    const { data: Allusers = [],refetch} = useQuery({
         queryKey: ['all-user',],
         queryFn: async () => {
             const res = await axiosSecure.get('/users/related/api/get');
@@ -84,7 +84,9 @@ const AllUsers = () => {
                             <tbody>
                                 {
                                     Allusers.map((singleUser, idx) => <tr key={idx}>
-                                        <AllUserRow singleUser={singleUser} 
+                                        <AllUserRow 
+                                        singleUser={singleUser} 
+                                        refetch={refetch}
                                         />
 
                                     </tr>)}

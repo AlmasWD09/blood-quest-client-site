@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
-const AllUserRow = ({ singleUser}) => {
+const AllUserRow = ({ singleUser,refetch}) => {
+  
+    const axiosSecure = useAxiosSecure();
     const { image, email, name, role, status, } = singleUser || {};
 
-    
     return (
         <>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -25,14 +28,11 @@ const AllUserRow = ({ singleUser}) => {
                 </div>
             </td>
          
-            <td>
+            <td className=' px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                 <select
-                    // name="activity"
-                    // id="activity"
-                    // disabled={isDisable === email ? true : false}
-                    // onChange={handleActivity}
+                
                     defaultValue={'change_status'}
-                    className="select select-info w-fit h-8 min-h-8 border border-secondery font-bold text-slate-500 px-3 py-1 rounded-md"
+                    className="select select-info w-fit h-8 min-h-8 border border-secondery  font-bold text-slate-500 px-3 py-1 rounded-md"
                 >
                     <option disabled value="change_status" >Status Change</option>
                     <option value="block">Block</option>
@@ -41,10 +41,7 @@ const AllUserRow = ({ singleUser}) => {
             </td>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                 <select
-                    // name="activity"
-                    // id="activity"
-                    // disabled={isDisable === email ? true : false}
-                    // onChange={handleRole}
+                
                     defaultValue={'change_role'}
                     className="select select-info w-fit h-8 min-h-8 border-2 border-primary font-bold text-slate-800 px-3 py-1 rounded-md"
                 >

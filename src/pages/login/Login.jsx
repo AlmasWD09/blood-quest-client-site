@@ -1,22 +1,31 @@
 import { useForm } from "react-hook-form";
 import {  useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../components/shared/navbar/Navbar";
 import { TfiClose } from "react-icons/tfi";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 
 const Login = () => {
-    const {user} = useAuth()
-  console.log(user);
+    const {logIn} = useAuth()
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async (data) => {
-        console.log(data);
-
+        logIn(data.email, data.password)
+            .then(result => {
+                console.log(result.user);
+                toast.success('Login successfull')
+                navigate(from, { replace: true });
+            })
+            .then(err => {
+                console.log(err);
+            })
     }
 
 // handle Back

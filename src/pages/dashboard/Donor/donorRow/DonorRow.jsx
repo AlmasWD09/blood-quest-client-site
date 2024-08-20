@@ -6,7 +6,7 @@ import { FiEdit } from "react-icons/fi";
 import { useNavigate } from 'react-router-dom';
 
 
-const DonorRow = ({ category, refetch }) => {
+const DonorRow = ({ category, refetch,serial }) => {
     const { _id, recipientName, district, upazila, donationDate, donationTime, status, } = category || {};
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
@@ -70,6 +70,10 @@ const DonorRow = ({ category, refetch }) => {
         <>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
 
+                {serial}
+            </td>
+            <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+
                 {recipientName}
             </td>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -104,5 +108,7 @@ const DonorRow = ({ category, refetch }) => {
 DonorRow.propTypes = {
     category: PropTypes.object,
     refetch: PropTypes.func,
+    serial: PropTypes.number,
+    
 };
 export default DonorRow;
