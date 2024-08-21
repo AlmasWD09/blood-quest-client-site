@@ -195,13 +195,6 @@ const SignUp = () => {
                             <div className="flex flex-col md:flex-row gap-0 md:gap-4">
                                 {/* user photo url */}
                                 <div className="w-full md:w-1/2 mt-3 md:mt-6">
-                                    {/* <label htmlFor="photoURL" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
-                                        Your photoURL
-                                    </label>
-
-                                    <div>
-                                        <input type="photoURL" name="photo" className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="photo URL"  {...register("photo", { required: true })} />
-                                    </div> */}
                                     <label htmlFor="image" className="block text-sm text-gray-500 dark:text-gray-300">Image</label>
                                     <input
                                         type="file"
@@ -306,7 +299,7 @@ const SignUp = () => {
                         </form>
                         <div
                             onClick={handleBack}
-                            className="hidden absolute -top-6 -right-4 bg-red-300 border-4 border-white  p-4 rounded-full hover:cursor-pointer">
+                            className="absolute -top-6 -right-4 bg-red-300 border-4 border-white  p-4 rounded-full hover:cursor-pointer">
                             <TfiClose className="text-sm font-bold" />
                         </div>
                     </div>

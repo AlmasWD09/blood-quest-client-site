@@ -6,44 +6,46 @@ import { Link, NavLink } from "react-router-dom";
 import Container from "../Container";
 import logo from "../../../assets/blood-logo.png"
 import useAuth from "../../../hooks/useAuth";
+import Button from "../Button";
 
 const Navbar = () => {
     const { user,logOut} = useAuth();
     const [isOpen, setIsOpen] = useState(false);
     return (
         <>
-            {/* <div className="bg-primaryGray"> */}
-            <div className="bg-gray-100">
+            <div  className="bg-primaryGray">
                 <Container>
-                    <div className="relative  flex justify-between items-center  px-6 py-6">
+                    <nav  className="relative flex justify-between items-center  px-6 py-6">
                         {/* navbar website name and logo */}
                         <div className="w-[20%]">
                             <div className="flex items-center">
-                                {/* <img src={logo} alt="" /> */}
-                                {/* <h1 className="text-5xl text-primary font-bold font-lato">Blood<span>Quest</span></h1> */}
-                                <h1 className="text-xl text-primary font-bold font-lato">Blood<span>Quest</span></h1>
+                                <img src={logo} alt="" />
+                                <h1 className="text-5xl text-primary font-bold font-lato">Blood<span>Quest</span></h1>
                             </div>
                         </div>
 
 
                         {/* navbar website menu items */}
-                        <div className=" w-[60%] lg:flex lg:justify-center lg:items-center hidden">
-                            <div>
-                                <NavLink to='/' className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    Home
+                        <div className=" w-[60%] lg:flex lg:justify-center lg:items-center items-center hidden">
+                            <div className="flex items-center">
+                                <NavLink to='/' >
+                                   <Button text={" Home"} />
                                 </NavLink>
-                                <NavLink to='/donation-request' className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    Donation Request
+                                <NavLink to='/donation-request' >
+                                <Button text={"Donation Request"} />
+                                   
                                 </NavLink>
-                                <NavLink to='/published-blogs' className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    Published Blogs
+                                <NavLink to='/published-blogs' >
+                                <Button text={"Published Blogs"} />
+                                    
                                 </NavLink>
-                                <NavLink to='/fundings' className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    Fundings
+                                <NavLink to='/fundings' >
+                                <Button text={"Fundings"} />
+                                    
                                 </NavLink>
                                 {
-                                    user && <NavLink to='/dashboard' className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                        Dashboard
+                                    user && <NavLink to='/dashboard' >
+                                        <Button text={"Dashboard"} />
                                     </NavLink>
                                 }
                             </div>
@@ -52,7 +54,7 @@ const Navbar = () => {
                         <div className=" w-[20%] lg:flex lg:justify-end hidden">
                             <div className="flex items-center gap-4">
                                 <Link to='/login'>
-                                    <button className=" py-2 mt-2">Login</button>
+                                    <button className="text-xl font-semibold font-lato py-2">Login</button>
                                 </Link>
                                 {
                                     user ? <div>user aca
@@ -117,7 +119,7 @@ const Navbar = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </nav>
                 </Container>
             </div>
         </>

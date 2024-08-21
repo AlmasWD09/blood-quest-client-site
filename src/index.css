@@ -5,6 +5,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* navbar menu */
+nav a.active {
+    color: #b91c1c;
+    font-weight:900;
+  }
 
 
 

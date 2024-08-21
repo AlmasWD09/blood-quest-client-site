@@ -18,6 +18,9 @@ export default {
       fontFamily: {
         'lato': "'Lato', 'sans-serif'",
       },
+      backgroundImage: {
+        'hero-bg': "url('/Public/banner.jpg')",
+      }
     },
   },
   plugins: [],

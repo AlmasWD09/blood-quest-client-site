@@ -1,18 +1,17 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 const AllUserRow = ({ singleUser,refetch}) => {
-  
     const axiosSecure = useAxiosSecure();
     const { image, email, name, role, status, } = singleUser || {};
+
 
     return (
         <>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                 <img className='w-16 h-16 rounded-lg' src={image} alt="" />
             </td>
-            <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+            <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'> 
                 {email}
             </td>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>

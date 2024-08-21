@@ -23,10 +23,10 @@ const AllUsers = () => {
         <div>
               <div className="text-center mt-10">
                 <h1 className="text-5xl font-semibold text-green-500">All Users</h1>
-                <div className="flex justify-center gap-4 pt-8">
+                {/* <div className="flex justify-center gap-4 pt-8">
                     <button className="bg-gray-200 px-6 py-1 rounded">active</button>
                     <button className="bg-gray-200 px-6 py-1 rounded">blocked</button>
-                </div>
+                </div> */}
             </div>
             {/* donation request table */}
             <div className='py-8'>

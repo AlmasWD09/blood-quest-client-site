@@ -102,7 +102,7 @@ navigate(-1)
                         </form>
                         <div 
                         onClick={handleBack}
-                        className="hidden absolute -top-6 -right-4 bg-red-300 border-4 border-white  p-4 rounded-full hover:cursor-pointer">
+                        className="absolute -top-6 -right-4 bg-red-300 border-4 border-white  p-4 rounded-full hover:cursor-pointer">
                             <TfiClose className="text-sm font-bold "/>
                         </div>
                     </div>
