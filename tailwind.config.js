@@ -20,6 +20,7 @@ export default {
       },
       backgroundImage: {
         'hero-bg': "url('/Public/banner.jpg')",
+        'erro': "url('/Public/error.jpg')",
       }
     },
   },
