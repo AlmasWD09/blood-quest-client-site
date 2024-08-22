@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../components/shared/navbar/Navbar";
 import { TfiClose } from "react-icons/tfi";
 // component(get data)
@@ -18,6 +18,8 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const SignUp = () => {
     const { creatUser, setUser, updateUser, } = useAuth();
     const axiosPublic = useAxiosPublic();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors }, } = useForm();
     const [showPassword, setShowPassword] = useState(false);
@@ -45,7 +47,7 @@ const SignUp = () => {
 
     // handle back
     const handleBack = () => {
-        navigate(-1)
+        navigate(from, { replace: true });
     }
 
     const onSubmit = async (data) => {

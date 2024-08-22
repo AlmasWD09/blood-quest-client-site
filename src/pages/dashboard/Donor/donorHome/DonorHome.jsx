@@ -20,21 +20,12 @@ const DonorHome = () => {
     return (
         <>
             <div className="h-screen">
-                <div className="text-center mt-10">
-                    <h1 className="text-5xl font-semibold text-green-500">
-                        Hello <span className="uppercase">{user?.displayName}</span> Welcome!!
-                    </h1>
-                    <p className="text-xl font-semibold text-green-700">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia voluptatibus exercitationem voluptates.
-                    </p>
+                <div className="text-center">
+                <h1 className="text-xl md:text-2xl text-secondery font-bold text-center pb-5 md:py-5 uppercase">Donor Home</h1>
                 </div>
                 {/* Conditional rendering based on the length of recentDonorRequestes */}
-                {recentDonorRequestes.length === 0 ? (
-                    <div className="flex justify-center items-center h-64">
-                        <LoadindSpenier />
-                    </div>
-                ) : (
-                    <div className="py-8">
+               
+                    <div className=" md:py-8">
                         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
                                 <table className="min-w-full leading-normal">
@@ -81,11 +72,11 @@ const DonorHome = () => {
                         </div>
 
                     </div>
-                )}
-                <div className="flex justify-center">
+            
+                <div className="flex justify-center py-4 md:pb-0">
                     <button
                         onClick={handleNavigate}
-                        className="px-5 py-5 bg-primary bg-secondary text-sm text-white rounded-md"
+                        className=" px-2 py-2 md:px-5 md:py-5 bg-primary bg-secondary text-sm text-white rounded-md"
                     >
                         View All Request
                     </button>

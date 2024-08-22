@@ -19,8 +19,8 @@ const Navbar = () => {
                         {/* navbar website name and logo */}
                         <div className="w-[20%]">
                             <div className="flex items-center">
-                                <img src={logo} alt="" />
-                                <h1 className="text-5xl text-primary font-bold font-lato">Blood<span>Quest</span></h1>
+                                <img className="w-[60%]" src={logo} alt="" />
+                                <h1 className="text-3xl md:text-5xl text-primary font-bold font-lato">Blood<span>Quest</span></h1>
                             </div>
                         </div>
 
@@ -93,18 +93,26 @@ const Navbar = () => {
                                 }`}
                         >
                             <div className="flex flex-col lg:hidden">
-                                <NavLink to='/' className=" px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md  dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    Home
+                            <NavLink to='/' >
+                                   <Button text={" Home"} />
                                 </NavLink>
-                                <NavLink to='/donation-request' className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md  dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    Donation Request
+                                <NavLink to='/donation-request' >
+                                <Button text={"Donation Request"} />
+                                   
                                 </NavLink>
-                                <NavLink to='/published-blogs' className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md  dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    Published Blogs
+                                <NavLink to='/published-blogs' >
+                                <Button text={"Published Blogs"} />
+                                    
                                 </NavLink>
-                                <NavLink to='/fundings' className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md  dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    Fundings
+                                <NavLink to='/fundings' >
+                                <Button text={"Fundings"} />
+                                    
                                 </NavLink>
+                                {
+                                    user && <NavLink to='/dashboard' >
+                                        <Button text={"Dashboard"} />
+                                    </NavLink>
+                                }
 
                                 {/* navbar Sign Up and login button */}
                                 <div className="md:w-[20%] ">

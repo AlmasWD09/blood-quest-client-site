@@ -18,6 +18,8 @@ import MyDonationRequest from "../pages/dashboard/Donor/myDonationRequest/MyDona
 import CreateDonationRequest from "../pages/dashboard/Donor/createDonationRequest/CreateDonationRequest";
 import VolunteerHome from "../pages/dashboard/volunteer/volunteerHome/VolunteerHome";
 import MyDonationEdit from "../pages/dashboard/Donor/myDonationRequest/MyDonationEdit";
+import CommonLayout from "../pages/dashboard/commonLayout/CommonLayout";
+import UserProfile from "../pages/dashboard/common/profile/UserProfile";
 
 
 const router = createBrowserRouter([
@@ -63,6 +65,14 @@ const router = createBrowserRouter([
       path:'/dashboard',
       element:<DashboardLayout />,
       children:[
+        {
+          path:'/dashboard',
+          element:<CommonLayout />
+        },
+        {
+          path:'profile',
+          element:<UserProfile />,
+        },
         // ============ donar dashboard part start =============
         {
           path:'donor-home',

@@ -32,12 +32,16 @@ const MyDonationRequest = () => {
     return (
         <>
             <div className="text-center mt-10">
-                <h1 className="text-5xl font-semibold text-green-500">My Donation Request</h1>
+                <h1 className="text-xl md:text-2xl text-secondery font-bold text-center pb-5 md:py-5 uppercase">My Donation Request</h1>
                 <div className="flex justify-center gap-4 pt-8">
-                    <button onClick={() => handleClick('pending')} className="bg-gray-200 px-6 py-1 rounded">Pending</button>
-                    <button onClick={() => handleClick('inProgress')} className="bg-gray-200 px-6 py-1 rounded">Inprogress</button>
-                    <button onClick={() => handleClick('done')} className="bg-gray-200 px-6 py-1 rounded">Done</button>
-                    <button onClick={() => handleClick('canceled')} className="bg-gray-200 px-6 py-1 rounded">Canceled</button>
+                  <div className="flex flex-col md:flex-row  gap-4">
+                  <button onClick={() => handleClick('pending')} className="bg-gray-200 px-6 py-1 rounded">Pending</button>
+                  <button onClick={() => handleClick('inProgress')} className="bg-gray-200 px-6 py-1 rounded">Inprogress</button>
+                  </div>
+                  <div className="flex flex-col md:flex-row  gap-4">
+                  <button onClick={() => handleClick('done')} className="bg-gray-200 px-6 py-1 rounded">Done</button>
+                  <button onClick={() => handleClick('canceled')} className="bg-gray-200 px-6 py-1 rounded">Canceled</button>
+                  </div>
                 </div>
             </div>
             {/* donation request table */}

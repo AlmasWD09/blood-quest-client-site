@@ -4,12 +4,17 @@ import Sidebar from "../components/shared/sidebar/Sidebar";
 
 const DashboardLayout = () => {
     return (
-        <div className="flex gap-3">
+        <div className="relative min-h-screen md:flex">
+          {/* sidebar */}
           <div>
           <Sidebar />
           </div>
-          <div className="w-full">
+
+          {/* outlet */}
+          <div className="flex-1 md:ml-64">
+            <div className="p-5">
             <Outlet />
+            </div>
           </div>
         </div>
     );

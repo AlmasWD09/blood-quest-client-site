@@ -14,7 +14,7 @@ const CreateDonationForm = () => {
     const { user} = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate()
-    const { register, handleSubmit, formState: { errors }, } = useForm();
+    const { register, handleSubmit } = useForm();
     const [selectedDistrict, setSelectedDistrict] = useState();
     const [selectedUpazilas, setSelectedUpazilas] = useState([]);
 
@@ -81,8 +81,8 @@ const CreateDonationForm = () => {
                             <input
                                 type="name"
                                 name="requester_name"
-                                defaultValue={user.displayName}
-                                readOnly={user.displayName}
+                                defaultValue={user?.displayName}
+                                readOnly={user?.displayName}
                                 {...register("requester_name", { required: true })}
                                 className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="requester Name" />
                         </div>
@@ -98,8 +98,8 @@ const CreateDonationForm = () => {
                             <input
                                 type="email"
                                 name="requester_email"
-                                defaultValue={user.email}
-                                readOnly={user.email}
+                                defaultValue={user?.email}
+                                readOnly={user?.email}
                                 {...register("requester_email", { required: true })}
                                 className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
                         </div>
@@ -250,12 +250,12 @@ const CreateDonationForm = () => {
                     <textarea
                         name="request_message"
                         {...register("request_message", { required: true })}
-                        className='resize-none w-full px-4 py-6 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-primary focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring' placeholder="Request Message..." />
+                        className='resize-none w-full px-4 py-2 md:py-6 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-primary focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring' placeholder="Request Message..." />
                 </div>
 
                 {/*  */}
-                <div className="flex justify-end py-6">
-                    <button type="submit" className="disabled:bg-gray-200  disabled:cursor-not-allowed px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary rounded-lg ">
+                <div className="flex justify-center md:justify-end py-4 md:py-6">
+                    <button type="submit" className="disabled:bg-gray-200  disabled:cursor-not-allowed p-2 md:px-6 md:py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary rounded-lg ">
                         Request Submit
                     </button>
                 </div>

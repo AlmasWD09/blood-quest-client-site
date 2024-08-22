@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import {  useState } from "react";
+import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../components/shared/navbar/Navbar";
@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 
 const Login = () => {
-    const {logIn} = useAuth()
+    const { logIn } = useAuth()
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
     const navigate = useNavigate();
@@ -28,10 +28,10 @@ const Login = () => {
             })
     }
 
-// handle Back
-const handleBack = () =>{
-navigate(-1)
-}
+    // handle Back
+    const handleBack = () => {
+        navigate(from, { replace: true });
+    }
     return (
         <>
             <Navbar />
@@ -43,50 +43,50 @@ navigate(-1)
                                 <h2 className=" pb-4 font-medium text-center text-gray-800 capitalize border-blue-500 dark:border-blue-400 dark:text-white">Please Login</h2>
                             </div>
 
-                               {/* user email */}
-                               <div className="w-full mt-6">
-                                    <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
-                                        Your email
-                                    </label>
+                            {/* user email */}
+                            <div className="w-full mt-6">
+                                <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
+                                    Your email
+                                </label>
 
-                                    <div>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            {...register("email", { required: true })}
-                                            className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
-                                    </div>
+                                <div>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        {...register("email", { required: true })}
+                                        className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
                                 </div>
+                            </div>
 
-                                 {/* password */}
-                                 <div className="relative w-full mt-6">
-                                    <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
-                                        Your password
-                                    </label>
-                                    <div>
-                                        <input
-                                            type={showPassword ? "text" : "password"}
-                                            name="password" {...register("password",
-                                                {
-                                                    required: true,
-                                                    minLength: 6,
-                                                    maxLength: 20,
-                                                    pattern: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/
-                                                })}
-                                            className="block w-full pl-3 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
-                                        {/* eye icon setup */}
-                                        <p className="absolute top-10 right-3 cursor-pointer"
-                                            onClick={() => setShowPassword(!showPassword)}>
-                                            {showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />}
-                                        </p>
-                                    </div>
-                                    <small>{errors.password?.type === 'require' && <span className="text-red-400">password is required</span>}</small>
-                                    <small>{errors.password?.type === 'minLength' && <span className="text-red-400">password must be 6 Carecter</span>}</small>
-                                    <small>{errors.password?.type === 'maxLength' && <span className="text-red-400">password less then 20 Carecter</span>}</small>
-                                    <small>{errors.password?.type === 'pattern' && <span className="text-red-400">at least one uppercase letter, one lowercase letter, one special characte</span>}</small>
+                            {/* password */}
+                            <div className="relative w-full mt-6">
+                                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
+                                    Your password
+                                </label>
+                                <div>
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        name="password" {...register("password",
+                                            {
+                                                required: true,
+                                                minLength: 6,
+                                                maxLength: 20,
+                                                pattern: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/
+                                            })}
+                                        className="block w-full pl-3 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
+                                    {/* eye icon setup */}
+                                    <p className="absolute top-10 right-3 cursor-pointer"
+                                        onClick={() => setShowPassword(!showPassword)}>
+                                        {showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />}
+                                    </p>
                                 </div>
-                      
-                           
+                                <small>{errors.password?.type === 'require' && <span className="text-red-400">password is required</span>}</small>
+                                <small>{errors.password?.type === 'minLength' && <span className="text-red-400">password must be 6 Carecter</span>}</small>
+                                <small>{errors.password?.type === 'maxLength' && <span className="text-red-400">password less then 20 Carecter</span>}</small>
+                                <small>{errors.password?.type === 'pattern' && <span className="text-red-400">at least one uppercase letter, one lowercase letter, one special characte</span>}</small>
+                            </div>
+
+
 
                             {/* login button */}
                             <div className="mt-6">
@@ -100,10 +100,10 @@ navigate(-1)
                                 </div>
                             </div>
                         </form>
-                        <div 
-                        onClick={handleBack}
-                        className="absolute -top-6 -right-4 bg-red-300 border-4 border-white  p-4 rounded-full hover:cursor-pointer">
-                            <TfiClose className="text-sm font-bold "/>
+                        <div
+                            onClick={handleBack}
+                            className="absolute -top-6 -right-4 bg-red-300 border-4 border-white  p-4 rounded-full hover:cursor-pointer">
+                            <TfiClose className="text-sm font-bold " />
                         </div>
                     </div>
                 </div>
