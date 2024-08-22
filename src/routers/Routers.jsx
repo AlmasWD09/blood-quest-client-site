@@ -11,7 +11,6 @@ import Fundings from "../pages/fundings/Fundings";
 import SearchPage from "../pages/searchPage/SearchPage";
 import AdminHome from "../pages/dashboard/admin/adminHome/AdminHome";
 import AllUsers from "../pages/dashboard/admin/allUsers/AllUsers";
-import AllBloodDonationRequest from "../pages/dashboard/admin/allBloodDonationRequest/AllBloodDonationRequest";
 import ContentManagement from "../pages/dashboard/admin/contentManagement/ContentManagement";
 import DonorHome from "../pages/dashboard/Donor/donorHome/DonorHome";
 import MyDonationRequest from "../pages/dashboard/Donor/myDonationRequest/MyDonationRequest";
@@ -20,6 +19,7 @@ import VolunteerHome from "../pages/dashboard/volunteer/volunteerHome/VolunteerH
 import MyDonationEdit from "../pages/dashboard/Donor/myDonationRequest/MyDonationEdit";
 import CommonLayout from "../pages/dashboard/commonLayout/CommonLayout";
 import UserProfile from "../pages/dashboard/common/profile/UserProfile";
+import AllDonationRequestVolunteer from "../pages/dashboard/volunteer/allDonationRequestVolunteer/AllDonationRequestVolunteer";
 
 
 const router = createBrowserRouter([
@@ -102,7 +102,7 @@ const router = createBrowserRouter([
         },
         {
           path:'all-blood-donation-request-volunteer',
-          element:<AllBloodDonationRequest />,
+          element:<AllDonationRequestVolunteer />,
         },
         {
           path:'content-management-volunteer',
@@ -120,10 +120,6 @@ const router = createBrowserRouter([
           {
             path:'all-users',
             element:<AllUsers />,
-          },
-          {
-            path:'all-blood-donation-request-admin',
-            element:<AllBloodDonationRequest />,
           },
           {
             path:'content-management-admin',

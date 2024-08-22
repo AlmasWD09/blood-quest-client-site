@@ -5,8 +5,9 @@ import useRecentDonorRequest from "../../../../hooks/useRecentDonorRequest";
 import LoadindSpenier from "../../../../components/LoadindSpenier";
 
 
+
 const DonorHome = () => {
-    const { user, loading } = useAuth()
+    const { user, loading } = useAuth();
     const navigate = useNavigate();
     const [recentDonorRequestes, refetch, isPending] = useRecentDonorRequest();
     console.log(recentDonorRequestes);
@@ -15,8 +16,8 @@ const DonorHome = () => {
     const handleNavigate = () => {
         navigate('/dashboard/my-donation-request')
     }
-    if (loading || isPending) return <LoadindSpenier />
 
+    if (loading || isPending) return <LoadindSpenier />
     return (
         <>
             <div className="h-screen">

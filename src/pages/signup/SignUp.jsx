@@ -65,17 +65,17 @@ const SignUp = () => {
         }
 
         //   user create
-        creatUser(data.email, data.password)
-            .then(result => {
-                const loggendUser = result.user
-                toast.success('User Created Successfully')
-                //   navigate('/')
+        // creatUser(data.email, data.password)
+        //     .then(result => {
+        //         const loggendUser = result.user
+        //         toast.success('User Created Successfully')
+        //         //   navigate('/')
 
-                // update profile
-                updateUser(data.name, data.photo)
-                setUser({ ...loggendUser, photoURL: data.photo, displayName: data.name })
+        //         // update profile
+        //         updateUser(data.name, data.photo)
+        //         setUser({ ...loggendUser, photoURL: data.photo, displayName: data.name })
 
-            })
+        //     })
 
 
         const imageFile = { image: data.image[0] }
@@ -98,10 +98,24 @@ const SignUp = () => {
                 Date: new Date(),
             }
 
+
+     //   user create
+     creatUser(data.email, data.password)
+     .then(result => {
+         const loggendUser = result.user
+         toast.success('User Created Successfully')
+           navigate('/')
+
+         // update profile
+         updateUser(data.name, userInfo.image)
+         setUser({ ...loggendUser, photoURL: userInfo.image, displayName: data.name })
+
+     })
+
+
+
             // post request here.....
-
             const { response } = await axiosPublic.post('/users/api/create', userInfo)
-
             console.log(response);
 
     }
