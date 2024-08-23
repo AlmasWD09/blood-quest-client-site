@@ -12,8 +12,8 @@ import LoadindSpenier from "../../../../components/LoadindSpenier";
 const UserProfile = () => {
     const [profileData] = useProfileData();
     const [role] = useRole();
-console.log(profileData);
-    const { user,loading } = useAuth();
+    console.log(profileData);
+    const { user, loading } = useAuth();
     const { register, handleSubmit, formState: { errors }, } = useForm();
     const [defaultData, setDefaultData] = useState(false);
     const [selectedDistrict, setSelectedDistrict] = useState();
@@ -39,7 +39,12 @@ console.log(profileData);
         console.log(data);
 
     }
-if(loading) return <LoadindSpenier />
+
+    const handleProfileEdit = () => {
+        setDefaultData(true
+        )
+    }
+    if (loading) return <LoadindSpenier />
     return (
         <>
             <section className="">
@@ -49,8 +54,10 @@ if(loading) return <LoadindSpenier />
                             <div className="">
                                 <h2 className=" pb-4 text-2xl font-medium text-center text-gray-800 capitalize border-blue-500 ">Profile</h2>
                                 <div className="flex justify-between">
-                                <button className="bg-primary text-white px-4 py-1 uppercase rounded-md">{role}</button>
-                                <button className="bg-primary text-white px-4 py-1 uppercase rounded-md">Edit</button>
+                                    <button className="bg-primary text-white px-4 py-1 uppercase rounded-md">{role}</button>
+                                    <button
+                                        onClick={handleProfileEdit}
+                                        className="bg-primary text-white px-4 py-1 uppercase rounded-md">Edit</button>
                                 </div>
                             </div>
                             {/* user name */}
@@ -63,7 +70,7 @@ if(loading) return <LoadindSpenier />
                                         type="name"
                                         name="name"
                                         defaultValue={user?.displayName}
-                                        readOnly={user?.displayName}
+                                        readOnly={!defaultData}
                                         {...register("name", { required: true })}
                                         className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Your Name" />
                                 </div>
@@ -80,7 +87,7 @@ if(loading) return <LoadindSpenier />
                                         type="email"
                                         name="email"
                                         defaultValue={user?.email}
-                                        readOnly={user?.email}
+                                        readOnly={!defaultData}
                                         {...register("email", { required: true })}
                                         className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
                                 </div>
@@ -92,7 +99,9 @@ if(loading) return <LoadindSpenier />
                                     Your district
                                 </label>
                                 <div>
-                                    <input
+                                    {
+                                        !defaultData ? (
+                                            <input
                                         id="district"
                                         name="district"
                                         type="text"
@@ -100,22 +109,19 @@ if(loading) return <LoadindSpenier />
                                         value={profileData?.district}
                                         className={`${defaultData && 'hidden'}block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40`}
                                     />
-
-                                    {
-                                        defaultData && (
-                                            <select
-                                                name='district'
-                                                {...register("district", { required: true })}
-                                                onChange={(e) => handleSelectDistrict(e)}
-                                                defaultValue={profileData?.district}
-                                                className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                                                <option disabled value={'choose_district'}>Choose your district</option>
-                                                {
-                                                    districts.map(district => <option key={district?.id} value={district?.name}>{district?.name}</option>)
-                                                }
-                                            </select>
-                                        )
+                                        ):( <select
+                                            name='district'
+                                            {...register("district", { required: true })}
+                                            onChange={(e) => handleSelectDistrict(e)}
+                                            defaultValue={profileData?.district}
+                                            className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                                            <option disabled value={'choose_district'}>Choose your district</option>
+                                            {
+                                                districts.map(district => <option key={district?.id} value={district?.name}>{district?.name}</option>)
+                                            }
+                                        </select>)
                                     }
+                                    
                                 </div>
                             </div>
 
@@ -125,28 +131,25 @@ if(loading) return <LoadindSpenier />
                                     Your upazila
                                 </label>
                                 <div>
-                                    <input
-                                        id="upazila"
-                                        name="upazila"
-                                        type="text"
-                                        readOnly
-                                        value={profileData?.upazila}
-                                        className={`${defaultData && 'hidden'}block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40`}
-                                    />
                                     {
-                                        defaultData && (
-                                            <select
-                                                name='upazila'
-                                                {...register("upazila", { required: true })}
-                                                defaultValue={profileData?.upazila}
-                                                className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                                                <option disabled value={'choose_upazila'}>Choose your upazila</option>
-                                                <option disabled value={'user?.upazila'}>{user?.upazila}</option>
-                                                {
-                                                    selectedUpazilas?.map((upazila, i) => <option key={i} value={upazila?.name}>{upazila?.name}</option>)
-                                                }
-                                            </select>
-                                        )
+                                        !defaultData ? (
+                                            <input
+                                            id="upazila"
+                                            name="upazila"
+                                            type="text"
+                                            readOnly
+                                            value={profileData?.upazila}
+                                            className={`${defaultData && 'hidden'}block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40`}
+                                        />
+                                        ):(  <select
+                                            name='upazila'
+                                            {...register("upazila")}
+                                            className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                                            <option disabled value={'choose_upazila'}>Choose your upazila</option>
+                                            {
+                                                selectedUpazilas?.map((upazila, i) => <option key={i} value={upazila?.name}>{upazila?.name}</option>)
+                                            }
+                                        </select>)
                                     }
                                 </div>
                             </div>
@@ -157,28 +160,29 @@ if(loading) return <LoadindSpenier />
                                     Your blood group
                                 </label>
                                 <div>
-                                <input
-                                        id="blood_group"
-                                        name="blood_group"
-                                        type="text"
-                                        readOnly
-                                        value={profileData?.blood_group}
-                                        className={`${defaultData && 'hidden'}block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40`}
-                                    />
-                                   {
-                                    defaultData && (
-                                        <select
-                                        name='blood_group'
-                                        {...register("blood_group", { required: true })}
-                                        defaultValue={profileData.blood_group}
-                                        className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                                        <option disabled value={'choose_blood'}>Choose your blood group</option>
-                                        {
-                                            blooGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
-                                        }
-                                    </select>
-                                    )
-                                   }
+                                    {
+                                        !defaultData ? (
+                                            <input
+                                            id="blood_group"
+                                            name="blood_group"
+                                            type="text"
+                                            readOnly
+                                            value={profileData?.blood_group}
+                                            className={`${defaultData && 'hidden'}block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40`}
+                                        />
+                                        ):(
+                                            <select
+                                            name='blood_group'
+                                            {...register("blood_group", { required: true })}
+                                            defaultValue={profileData.blood_group}
+                                            className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                                            <option disabled value={'choose_blood'}>Choose your blood group</option>
+                                            {
+                                                blooGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
+                                            }
+                                        </select>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </form>
