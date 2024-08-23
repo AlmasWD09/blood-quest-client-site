@@ -13,6 +13,7 @@ const AllDonationRequestVolunteer = () => {
             return res.data;
         }
     })
+    
     return (
         <>
             <div className="text-center mt-10">
@@ -49,7 +50,7 @@ const AllDonationRequestVolunteer = () => {
                                         scope='col'
                                         className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                                     >
-                                         Time
+                                         Information
                                     </th>
                                     <th
                                         scope='col'
@@ -62,13 +63,14 @@ const AllDonationRequestVolunteer = () => {
                                         scope='col'
                                         className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                                     >
-                                        Status
+                                     Time
+                                      
                                     </th>
                                     <th
                                         scope='col'
                                         className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                                     >
-                                        Information
+                                    Status
                                     </th>
                                     <th
                                         scope='col'

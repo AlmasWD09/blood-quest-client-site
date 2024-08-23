@@ -5,13 +5,15 @@ import { useEffect, useState } from "react";
 import districts from "../../../../components/district.json"
 import upazilas from "../../../../components/upazila.json"
 import useProfileData from "../../../../hooks/useProfileData";
+import useRole from "../../../../hooks/useRole";
+import LoadindSpenier from "../../../../components/LoadindSpenier";
 
 
 const UserProfile = () => {
     const [profileData] = useProfileData();
-
-
-    const { user } = useAuth();
+    const [role] = useRole();
+console.log(profileData);
+    const { user,loading } = useAuth();
     const { register, handleSubmit, formState: { errors }, } = useForm();
     const [defaultData, setDefaultData] = useState(false);
     const [selectedDistrict, setSelectedDistrict] = useState();
@@ -37,7 +39,7 @@ const UserProfile = () => {
         console.log(data);
 
     }
-
+if(loading) return <LoadindSpenier />
     return (
         <>
             <section className="">
@@ -46,6 +48,10 @@ const UserProfile = () => {
                         <form onSubmit={handleSubmit(onSubmit)} className="">
                             <div className="">
                                 <h2 className=" pb-4 text-2xl font-medium text-center text-gray-800 capitalize border-blue-500 ">Profile</h2>
+                                <div className="flex justify-between">
+                                <button className="bg-primary text-white px-4 py-1 uppercase rounded-md">{role}</button>
+                                <button className="bg-primary text-white px-4 py-1 uppercase rounded-md">Edit</button>
+                                </div>
                             </div>
                             {/* user name */}
                             <div className="w-full mt-6">
