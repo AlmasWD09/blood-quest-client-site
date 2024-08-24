@@ -1,9 +1,22 @@
 import PropTypes from 'prop-types';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
+
+
 
 const AllUserRow = ({ singleUser,refetch}) => {
     const axiosSecure = useAxiosSecure();
     const { image, email, name, role, status, } = singleUser || {};
+
+
+   const handleChangeRole = async (userChangeRole,email)=>{
+    
+   const response = await axiosSecure.patch(`/user/role/change/api/${email}`,{role:userChangeRole});
+   if(response.data. modifiedCount > 0){
+    toast.success("user role change successfully")
+    refetch()
+   }
+   }
 
 
     return (
@@ -20,27 +33,27 @@ const AllUserRow = ({ singleUser,refetch}) => {
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                 {role}
             </td>
-            <td className=' px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+            <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                 <div className='flex items-center'>
                     <p>{status}</p>
-                    <p className={` w-2 h-2 rounded-full ${status === 'active' ? 'bg-green-500' : 'bg-red-500'}`}></p>
+                    <p className={`w-2 h-2 rounded-full ${status === 'active' ? 'bg-green-500' : 'bg-red-500'}`}></p>
                 </div>
             </td>
          
-            <td className=' px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+
+            <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                 <select
-                
                     defaultValue={'change_status'}
-                    className="select select-info w-fit h-8 min-h-8 border border-secondery  font-bold text-slate-500 px-3 py-1 rounded-md"
-                >
-                    <option disabled value="change_status" >Status Change</option>
+                    className="select select-info w-fit h-8 min-h-8 border border-secondery  font-bold text-slate-500 px-3 py-1 rounded-md">
+
+                    <option disabled value="change_status">Status Change</option>
                     <option value="block">Block</option>
                     <option value="unblock">Unblock</option>
                 </select>
             </td>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                 <select
-                
+                onChange={(e)=>handleChangeRole((e.target.value),email)}
                     defaultValue={'change_role'}
                     className="select select-info w-fit h-8 min-h-8 border-2 border-primary font-bold text-slate-800 px-3 py-1 rounded-md"
                 >
@@ -57,5 +70,6 @@ const AllUserRow = ({ singleUser,refetch}) => {
 // props-type validation
 AllUserRow.propTypes = {
     singleUser: PropTypes.object,
+    refetch: PropTypes.func,
 };
 export default AllUserRow;

@@ -10,15 +10,13 @@ import LoadindSpenier from "../../../../components/LoadindSpenier";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_API_KEY;
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const UserProfile = () => {
     const [profileData] = useProfileData();
     const [role] = useRole();
 
     const axiosSecure = useAxiosSecure();
     const { user, loading } = useAuth();
-    const { register, handleSubmit, formState: { errors }, } = useForm();
+    const { register, handleSubmit,} = useForm();
     const [defaultData, setDefaultData] = useState(false);
     const [selectedDistrict, setSelectedDistrict] = useState();
     const [selectedUpazilas, setSelectedUpazilas] = useState([]);
@@ -40,18 +38,10 @@ const UserProfile = () => {
     const blooGroup = [' A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
     const onSubmit = async (data) => {
-        const imageFile = { image: data.image[0] }
-        const res = await axiosSecure.post(image_hosting_api, imageFile, {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        });
-
-
+        
         const userInfoUpdate = {
             name: data.name,
             email: data.email,
-            image: res.data.data.display_url,
             blood_group: data.blood_group,
             district: data.district,
             upazila: data.upazila,
@@ -122,34 +112,6 @@ const UserProfile = () => {
                                         readOnly={!defaultData}
                                         {...register("email", { required: true })}
                                         className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
-                                </div>
-                            </div>
-
-
-                            {/* user photo url */}
-                            <div className="w-full mt-6">
-                                <label htmlFor="image" className="block text-sm text-gray-500 dark:text-gray-300">Image</label>
-                                <div>
-                                    {
-                                        !defaultData ? (
-                                            <input
-                                                type="file"
-                                                name="image"
-                                                id="image"
-
-                                                {...register("image", { required: defaultData ? true : false })}
-                                                className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-40 dark:border-primary dark:bg-gray-900 dark:focus:border-primary"
-                                            />
-                                        ) : (
-                                            <input
-                                                type="file"
-                                                name="image"
-                                                id="image"
-                                                {...register("image", { required: true })}
-                                                className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-40 dark:border-primary dark:bg-gray-900 dark:focus:border-primary"
-                                            />
-                                        )
-                                    }
                                 </div>
                             </div>
 

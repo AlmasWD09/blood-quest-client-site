@@ -7,7 +7,7 @@ import useRole from "../../../hooks/useRole";
 const AllSidebar = () => {
     const [role] = useRole();
 
-console.log(role);
+
     return (
         <>
             <div>
