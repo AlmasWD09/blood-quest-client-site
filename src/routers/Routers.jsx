@@ -20,6 +20,7 @@ import MyDonationEdit from "../pages/dashboard/Donor/myDonationRequest/MyDonatio
 import CommonLayout from "../pages/dashboard/commonLayout/CommonLayout";
 import UserProfile from "../pages/dashboard/common/profile/UserProfile";
 import AllDonationRequestVolunteer from "../pages/dashboard/volunteer/allDonationRequestVolunteer/AllDonationRequestVolunteer";
+import AllBloodDonationAdmin from "../pages/dashboard/admin/allBloodDonation/AllBloodDonationAdmin";
 
 
 const router = createBrowserRouter([
@@ -120,6 +121,10 @@ const router = createBrowserRouter([
           {
             path:'all-users',
             element:<AllUsers />,
+          },
+          {
+            path:'all-blood-donation-admin',
+            element:<AllBloodDonationAdmin />,
           },
           {
             path:'content-management-admin',
