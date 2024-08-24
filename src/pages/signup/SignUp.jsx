@@ -64,20 +64,6 @@ const SignUp = () => {
 
         }
 
-        //   user create
-        // creatUser(data.email, data.password)
-        //     .then(result => {
-        //         const loggendUser = result.user
-        //         toast.success('User Created Successfully')
-        //         //   navigate('/')
-
-        //         // update profile
-        //         updateUser(data.name, data.photo)
-        //         setUser({ ...loggendUser, photoURL: data.photo, displayName: data.name })
-
-        //     })
-
-
         const imageFile = { image: data.image[0] }
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: {

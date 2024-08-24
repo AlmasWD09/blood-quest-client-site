@@ -6,7 +6,7 @@ const useProfileData = () => {
     const { user} = useAuth()
     const axiosSecure = useAxiosSecure()
   
-    const { data: profileData = [], isLoading } = useQuery({
+    const { data: profileData = [],refetch } = useQuery({
       queryKey: ['user-data', user?.email],
       queryFn: async () => {
         const { data } = await axiosSecure(`/user/profile/api/get/${user?.email}`)
@@ -16,7 +16,7 @@ const useProfileData = () => {
   
     //   Fetch user info using logged in user email
   
-    return [profileData, isLoading]
+    return [profileData,refetch]
   }
 
 export default useProfileData;

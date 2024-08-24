@@ -253,7 +253,7 @@ const CreateDonationForm = () => {
                         className='resize-none w-full px-4 py-2 md:py-6 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-primary focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring' placeholder="Request Message..." />
                 </div>
 
-                {/*  */}
+                {/* request button */}
                 <div className="flex justify-center md:justify-end py-4 md:py-6">
                     <button type="submit" className="disabled:bg-gray-200  disabled:cursor-not-allowed p-2 md:px-6 md:py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary rounded-lg ">
                         Request Submit

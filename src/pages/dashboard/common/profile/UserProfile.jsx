@@ -7,12 +7,16 @@ import upazilas from "../../../../components/upazila.json"
 import useProfileData from "../../../../hooks/useProfileData";
 import useRole from "../../../../hooks/useRole";
 import LoadindSpenier from "../../../../components/LoadindSpenier";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
-
+const image_hosting_key = import.meta.env.VITE_IMAGE_API_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const UserProfile = () => {
     const [profileData] = useProfileData();
     const [role] = useRole();
-    console.log(profileData);
+
+    const axiosSecure = useAxiosSecure();
     const { user, loading } = useAuth();
     const { register, handleSubmit, formState: { errors }, } = useForm();
     const [defaultData, setDefaultData] = useState(false);
@@ -36,29 +40,57 @@ const UserProfile = () => {
     const blooGroup = [' A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
     const onSubmit = async (data) => {
-        console.log(data);
+        const imageFile = { image: data.image[0] }
+        const res = await axiosSecure.post(image_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
 
-    }
+
+        const userInfoUpdate = {
+            name: data.name,
+            email: data.email,
+            image: res.data.data.display_url,
+            blood_group: data.blood_group,
+            district: data.district,
+            upazila: data.upazila,
+            Date: new Date(),
+        }
+        const response = await axiosSecure.put(`/userProfile/update/api/${user?.email}`, userInfoUpdate);
+        if (response.data.modifiedCount > 0) {
+            toast.success('update successfully')
+            setDefaultData(false)
+        }
+    };
+
+
+
+
+
 
     const handleProfileEdit = () => {
         setDefaultData(true
         )
     }
+
     if (loading) return <LoadindSpenier />
     return (
         <>
             <section className="">
                 <div className="flex items-center justify-center min-h-screen px-6 ">
                     <div className="relative bg-primaryGray w-full max-w-2xl shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-8 rounded-lg">
+                        <div className="flex justify-between">
+                            <button className="bg-primary text-white px-4 py-1 uppercase rounded-md">{role}</button>
+                   {
+                    !defaultData ?          <button
+                    onClick={handleProfileEdit}
+                    className="bg-primary text-white px-4 py-1 uppercase rounded-md">Edit</button> : ''
+                   }
+                        </div>
                         <form onSubmit={handleSubmit(onSubmit)} className="">
                             <div className="">
                                 <h2 className=" pb-4 text-2xl font-medium text-center text-gray-800 capitalize border-blue-500 ">Profile</h2>
-                                <div className="flex justify-between">
-                                    <button className="bg-primary text-white px-4 py-1 uppercase rounded-md">{role}</button>
-                                    <button
-                                        onClick={handleProfileEdit}
-                                        className="bg-primary text-white px-4 py-1 uppercase rounded-md">Edit</button>
-                                </div>
                             </div>
                             {/* user name */}
                             <div className="w-full mt-6">
@@ -93,6 +125,34 @@ const UserProfile = () => {
                                 </div>
                             </div>
 
+
+                            {/* user photo url */}
+                            <div className="w-full mt-6">
+                                <label htmlFor="image" className="block text-sm text-gray-500 dark:text-gray-300">Image</label>
+                                <div>
+                                    {
+                                        !defaultData ? (
+                                            <input
+                                                type="file"
+                                                name="image"
+                                                id="image"
+
+                                                {...register("image", { required: defaultData ? true : false })}
+                                                className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-40 dark:border-primary dark:bg-gray-900 dark:focus:border-primary"
+                                            />
+                                        ) : (
+                                            <input
+                                                type="file"
+                                                name="image"
+                                                id="image"
+                                                {...register("image", { required: true })}
+                                                className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-40 dark:border-primary dark:bg-gray-900 dark:focus:border-primary"
+                                            />
+                                        )
+                                    }
+                                </div>
+                            </div>
+
                             {/* user district */}
                             <div className="w-full mt-6">
                                 <label htmlFor="district" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
@@ -102,14 +162,14 @@ const UserProfile = () => {
                                     {
                                         !defaultData ? (
                                             <input
-                                        id="district"
-                                        name="district"
-                                        type="text"
-                                        readOnly
-                                        value={profileData?.district}
-                                        className={`${defaultData && 'hidden'}block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40`}
-                                    />
-                                        ):( <select
+                                                id="district"
+                                                name="district"
+                                                type="text"
+                                                readOnly
+                                                value={profileData?.district}
+                                                className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                            />
+                                        ) : (<select
                                             name='district'
                                             {...register("district", { required: true })}
                                             onChange={(e) => handleSelectDistrict(e)}
@@ -121,7 +181,7 @@ const UserProfile = () => {
                                             }
                                         </select>)
                                     }
-                                    
+
                                 </div>
                             </div>
 
@@ -134,14 +194,14 @@ const UserProfile = () => {
                                     {
                                         !defaultData ? (
                                             <input
-                                            id="upazila"
-                                            name="upazila"
-                                            type="text"
-                                            readOnly
-                                            value={profileData?.upazila}
-                                            className={`${defaultData && 'hidden'}block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40`}
-                                        />
-                                        ):(  <select
+                                                id="upazila"
+                                                name="upazila"
+                                                type="text"
+                                                readOnly
+                                                value={profileData?.upazila}
+                                                className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                            />
+                                        ) : (<select
                                             name='upazila'
                                             {...register("upazila")}
                                             className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
@@ -163,28 +223,36 @@ const UserProfile = () => {
                                     {
                                         !defaultData ? (
                                             <input
-                                            id="blood_group"
-                                            name="blood_group"
-                                            type="text"
-                                            readOnly
-                                            value={profileData?.blood_group}
-                                            className={`${defaultData && 'hidden'}block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40`}
-                                        />
-                                        ):(
+                                                id="blood_group"
+                                                name="blood_group"
+                                                type="text"
+                                                readOnly
+                                                value={profileData?.blood_group}
+                                                className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                            />
+                                        ) : (
                                             <select
-                                            name='blood_group'
-                                            {...register("blood_group", { required: true })}
-                                            defaultValue={profileData.blood_group}
-                                            className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                                            <option disabled value={'choose_blood'}>Choose your blood group</option>
-                                            {
-                                                blooGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
-                                            }
-                                        </select>
+                                                name='blood_group'
+                                                {...register("blood_group", { required: true })}
+                                                defaultValue={profileData.blood_group}
+                                                className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                                                <option disabled value={'choose_blood'}>Choose your blood group</option>
+                                                {
+                                                    blooGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
+                                                }
+                                            </select>
                                         )
                                     }
                                 </div>
                             </div>
+                            {
+                                defaultData && <div className="flex justify-center md:justify-end py-4 md:py-6">
+                                    <button
+                                        type="submit" className="p-2 md:px-6 md:py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary rounded-lg ">
+                                        Update Profile
+                                    </button>
+                                </div>
+                            }
                         </form>
                     </div>
                 </div>
