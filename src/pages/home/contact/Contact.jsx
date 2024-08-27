@@ -45,7 +45,7 @@ const Contact = () => {
                                             type="name"
                                             name="last-name"
                                             {...register("last-name", { required: true })}
-                                            className="block w-full py-5 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Your Lastst Name" />
+                                            className="block w-full py-5 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Your Last Name" />
                                     </div>
                                 </div>
 

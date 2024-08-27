@@ -11,7 +11,7 @@ import Fundings from "../pages/fundings/Fundings";
 import SearchPage from "../pages/searchPage/SearchPage";
 import AdminHome from "../pages/dashboard/admin/adminHome/AdminHome";
 import AllUsers from "../pages/dashboard/admin/allUsers/AllUsers";
-import ContentManagement from "../pages/dashboard/admin/contentManagement/ContentManagement";
+// import ContentManagement from "../pages/dashboard/admin/contentManagement/ContentManagement";
 import DonorHome from "../pages/dashboard/Donor/donorHome/DonorHome";
 import MyDonationRequest from "../pages/dashboard/Donor/myDonationRequest/MyDonationRequest";
 import CreateDonationRequest from "../pages/dashboard/Donor/createDonationRequest/CreateDonationRequest";
@@ -21,6 +21,9 @@ import CommonLayout from "../pages/dashboard/commonLayout/CommonLayout";
 import UserProfile from "../pages/dashboard/common/profile/UserProfile";
 import AllDonationRequestVolunteer from "../pages/dashboard/volunteer/allDonationRequestVolunteer/AllDonationRequestVolunteer";
 import AllBloodDonationAdmin from "../pages/dashboard/admin/allBloodDonation/AllBloodDonationAdmin";
+import ContentManagements from "../pages/dashboard/admin/contentManagement/ContentManagements";
+import ContentManagement from "../pages/dashboard/volunteer/contentManagement/ContentManagement";
+import AddBlog from "../pages/dashboard/volunteer/addBlog/AddBlog";
 
 
 const router = createBrowserRouter([
@@ -109,6 +112,10 @@ const router = createBrowserRouter([
           path:'content-management-volunteer',
           element:<ContentManagement />,
         },
+        {
+          path:'add-blog',
+          element:<AddBlog />,
+        },
         // ============ volunteer dashboard part end ===============
 
 
@@ -128,7 +135,7 @@ const router = createBrowserRouter([
           },
           {
             path:'content-management-admin',
-            element:<ContentManagement />,
+            element:<ContentManagements />,
           },
         // ============ admin dashboard part end ===============
       ]
