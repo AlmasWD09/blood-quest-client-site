@@ -3,26 +3,30 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 // jodit react for..
 import { useState, useRef, useEffect, } from 'react';
 import JoditEditor from 'jodit-react';
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useAuth from "../../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_API_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const AddBlog = () => {
+    const { user } = useAuth();
+    const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
-    const { register, handleSubmit,setValue, formState: { errors }, } = useForm();
+    const axiosSecure = useAxiosSecure();
+    const { register, handleSubmit, setValue, formState: { errors }, } = useForm();
 
     const editor = useRef(null);
     const [content, setContent] = useState('');
 
     useEffect(() => {
         register('content', { required: true });
-      }, [register]);
+    }, [register]);
 
 
     const onSubmit = async (data) => {
-        console.log(data);
-
-
 
         // image upload imagebb
         const imageFile = { image: data.image[0] }
@@ -31,7 +35,21 @@ const AddBlog = () => {
                 'content-type': 'multipart/form-data'
             }
         });
+        const blogInfo = {
+            status: 'draft',
+            title: data.title,
+            image: res.data.data.display_url,
+            name: user?.displayName,
+            email: user?.email,
+            content: data.content,
+            postDate: new Date(),
+        }
 
+        const response = await axiosSecure.post('/blog/related/api/create', blogInfo);
+        if (response.data.insertedId) {
+            navigate('/dashboard/content-management-volunteer')
+            toast.success('Create blog successfully')
+        }
 
 
     }
@@ -83,13 +101,14 @@ const AddBlog = () => {
                                     onChange={(newContent) => {
                                         setContent(newContent);
                                         setValue('content', newContent); // Update the form value with the editor content
-                                      }}
+                                    }}
                                 />
                             </div>
 
                             {/* create content show in add form */}
                             <div className="mt-4">
-                                <div>{content}</div>
+                                <h2>Content Preview</h2>
+                                <div dangerouslySetInnerHTML={{ __html: content }} />
                             </div>
 
                             {/* blog button */}

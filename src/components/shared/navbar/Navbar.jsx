@@ -11,6 +11,10 @@ import Button from "../Button";
 const Navbar = () => {
     const { user,logOut} = useAuth();
     const [isOpen, setIsOpen] = useState(false);
+
+const handleClick = () =>{
+    setIsOpen(!isOpen)
+}
     return (
         <>
             <div  className="bg-primaryGray">
@@ -57,9 +61,21 @@ const Navbar = () => {
                                     <button className="text-xl font-semibold font-lato py-2">Login</button>
                                 </Link>
                                 {
-                                    user ? <div>user aca
-                                        <button onClick={logOut} className="bg-green-300 p-2 rounded-full">log out</button>
+                                    user ? <div  className="relative focus:outline-none cursor-pointer">
+                                    <div className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full">
+                                        <img
+                                        onClick={handleClick}
+                                            src={user?.photoURL}
+                                            className="object-cover w-full h-full"
+                                            alt={user?.displayName}
+                                        />
                                     </div>
+                                        {
+                                            isOpen && <button 
+                                            onClick={logOut}
+                                            className="absolute bg-green-300 px-3 rounded">LogOut</button>
+                                        }
+                                </div>
                                         :
                                         <Link to='/sign-up'>
                                             <button className="w-full px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Sign Up</button>
