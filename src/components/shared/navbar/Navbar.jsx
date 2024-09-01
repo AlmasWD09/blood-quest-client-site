@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { TfiClose } from "react-icons/tfi";
 import { VscMenu } from "react-icons/vsc";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Container from "../Container";
 import logo from "../../../assets/blood-logo.png"
 import useAuth from "../../../hooks/useAuth";
@@ -10,19 +10,25 @@ import Button from "../Button";
 
 const Navbar = () => {
     const { user,logOut} = useAuth();
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
 
 const handleClick = () =>{
     setIsOpen(!isOpen)
 }
+const handleNavigaet = () =>{
+    navigate('/')
+}
     return (
         <>
             <div  className="bg-primaryGray">
                 <Container>
-                    <nav  className="relative flex justify-between items-center  px-6 py-6">
+                    <nav  className="relative flex justify-between items-center  py-6">
                         {/* navbar website name and logo */}
                         <div className="w-[20%]">
-                            <div className="flex items-center">
+                            <div 
+                            onClick={handleNavigaet}
+                            className="flex items-center cursor-pointer">
                                 <img className="w-[60%]" src={logo} alt="" />
                                 <h1 className="text-3xl md:text-5xl text-primary font-bold font-lato">Blood<span>Quest</span></h1>
                             </div>
@@ -88,7 +94,7 @@ const handleClick = () =>{
 
 
                         {/* Mobile Menu open: "block", Menu closed: "hidden" */}
-                        <div className="flex  lg:hidden">
+                        <div className="flex lg:hidden">
                             <button
                                 onClick={() => setIsOpen(!isOpen)}
                                 type="button"
@@ -97,18 +103,18 @@ const handleClick = () =>{
 
                             >
                                 {!isOpen ? (
-                                    <VscMenu className="text-4xl " />
+                                    <VscMenu className="text-2xl " />
                                 ) : (
-                                    <TfiClose className="text-4xl " />
+                                    <TfiClose className="text-2xl " />
                                 )}
                             </button>
                         </div>
 
                         <div
-                            className={`lg:hidden absolute inset-x-12 md:inset-x-11 lg:inset-x-0 z-20  min-h-[70vh] w-[88%] md:w-[94%] px-6 mt-[486px] transition-all duration-300 ease-in-out bg-gray-300 dark:bg-gray-800 ${isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full'
+                            className={`lg:hidden absolute inset-x-16 md:inset-x-11 lg:inset-x-0 z-20  min-h-[100vh] w-[88%] md:w-[94%] px-6 py-10 mt-[610px] transition-all duration-300 ease-in-out bg-primaryGray dark:bg-gray-800 ${isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full'
                                 }`}
                         >
-                            <div className="flex flex-col lg:hidden">
+                            <div className="flex flex-col lg:hidden space-y-4">
                             <NavLink to='/' >
                                    <Button text={" Home"} />
                                 </NavLink>

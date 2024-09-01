@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 // jodit react for..
-import { useState, useRef, useEffect, } from 'react';
+import { useState, useRef, useEffect, refetch} from 'react';
 import JoditEditor from 'jodit-react';
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useAuth from "../../../../hooks/useAuth";
@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_API_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
+
 const AddBlog = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
@@ -35,6 +36,7 @@ const AddBlog = () => {
                 'content-type': 'multipart/form-data'
             }
         });
+
         const blogInfo = {
             status: 'draft',
             title: data.title,
@@ -45,11 +47,16 @@ const AddBlog = () => {
             postDate: new Date(),
         }
 
+      try{
         const response = await axiosSecure.post('/blog/related/api/create', blogInfo);
-        if (response.data.insertedId) {
-            navigate('/dashboard/content-management-volunteer')
-            toast.success('Create blog successfully')
-        }
+
+        console.log(response.data);
+        toast.success('Create blog successfully')
+        navigate('/dashboard/content-management-volunteer')
+      }
+      catch(error){
+        toast.error(error)
+      }
 
 
     }
@@ -113,7 +120,7 @@ const AddBlog = () => {
 
                             {/* blog button */}
                             <div className="flex justify-center md:justify-end py-4 md:py-6">
-                                <button type="submit" className="disabled:bg-gray-200  disabled:cursor-not-allowed p-2 md:px-6 md:py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary rounded-lg">Create Blog</button>
+                                <button type="submit" className=" p-2 md:px-6 md:py-3 text-sm font-medium  text-white capitalize  bg-primary rounded-lg">Create Blog</button>
                             </div>
                         </form>
                     </div>

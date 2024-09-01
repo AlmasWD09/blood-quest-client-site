@@ -1,8 +1,20 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
-const BlogCurd = ({blog}) => {
-    const {image,title,status,name,email,content,postDate} = blog || {};
+const BlogCurd = ({blog,refetch}) => {
+    const axiosSecure = useAxiosSecure();
+    const {_id,image,title,status,name,email,content,postDate} = blog || {};
+
+
+    const handleDelete = async (id) =>{
+        const res = await axiosSecure.delete(`/blog/releted/api/delete/${id}`)
+       if(res.data.deletedCount > 0){
+        refetch()
+        toast.success('Blog deleted successfully')
+       }
+    }
     return (
         <>
         <div className='relative flex flex-col  bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-lg md:min-h-52 hover:bg-gray-100'>
@@ -19,12 +31,14 @@ const BlogCurd = ({blog}) => {
                     <p className='font-normal text-gray-700'>{content}</p>
                 }
                 <div>
-                    <div className='flex gap-4'>
-                        <button className='bg-red-300 text-gray-500 px-2 rounded'>Delete</button>
+                    <div className='flex justify-between gap-4'>
+                        <button 
+                        onClick={()=>handleDelete(_id)}
+                        className='bg-red-300 text-gray-500 px-2 rounded'>Delete</button>
                         <button className='bg-green-300 text-gray-600 px-2 rounded'>Update</button>
                     </div>
                     <div className='flex justify-end'>
-                        <button className='bg-primary text-white px-2 rounded'>Publish</button>
+                        <button className='w-full bg-primary text-white px-2 mt-2 rounded'>Publish</button>
                     </div>
                     <span className='absolute top-0 right-0'>{postDate}</span>
                 </div>
