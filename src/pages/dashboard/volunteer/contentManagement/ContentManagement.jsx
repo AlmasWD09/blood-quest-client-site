@@ -1,28 +1,30 @@
 import { useNavigate } from "react-router-dom";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
 import BlogCurd from "../blogCurd/BlogCurd";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import axios from "axios";
 
 
 const ContentManagement = () => {
-    const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
+    const [allBlogs, setAllBlogs] = useState([]);
     const [sortValue, setSortValue] = useState('')
 
+
+    // get data by api
+    useEffect(() => {
+        const getData = async () => {
+            const { data } = await axios(`${import.meta.env.VITE_API_URL}/allBlog/related/api/get?sort=${sortValue}`)
+            setAllBlogs(data)
+        }
+        getData()
+    }, [axiosSecure, sortValue])
 
     const handleBlog = () => {
         navigate('/dashboard/add-blog')
     }
-
-    const { data: allBlogs = [],refetch} = useQuery({
-        queryKey: ['blogs'],
-        queryFn: async () => {
-            const res = await axiosSecure('/allBlog/related/api/get')
-            return res.data
-        }
-    })
-
     return (
         <div>
             <h1 className="text-xl md:text-2xl text-secondery font-bold text-center pb-5 md:py-5 uppercase">Content Management volunteer</h1>
@@ -47,7 +49,7 @@ const ContentManagement = () => {
                 {
                     allBlogs.map((blog, idx) => {
                         return (
-                            <BlogCurd key={idx} blog={blog} refetch={refetch}/>
+                            <BlogCurd key={idx} blog={blog} />
                         )
                     })
                 }

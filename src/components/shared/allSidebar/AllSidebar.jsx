@@ -1,5 +1,7 @@
 import { FaHome } from "react-icons/fa";
 import { VscGitPullRequestGoToChanges, VscGitPullRequestNewChanges } from "react-icons/vsc";
+import { MdOutlineContentPasteGo } from "react-icons/md";
+import { PiUsersThreeFill } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
 import useRole from "../../../hooks/useRole";
 
@@ -37,11 +39,11 @@ const AllSidebar = () => {
                         <NavLink className={({ isActive }) =>
                             `flex items-center px-4 py-2 my-2  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
                             }`
-                        } to='/dashboard/all-blood-donation-request-volunteer'>All Blood Donation Request</NavLink>
+                        } to='/dashboard/all-blood-donation-request-volunteer'><VscGitPullRequestNewChanges className="mr-2" />All Blood Donation Request</NavLink>
                         <NavLink className={({ isActive }) =>
                             `flex items-center px-4 py-2 my-2  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
                             }`
-                        } to='/dashboard/content-management-volunteer'>Content Management</NavLink>
+                        } to='/dashboard/content-management-volunteer'><MdOutlineContentPasteGo className="mr-2" />Content Management</NavLink>
                     </div>
                 )}
 
@@ -54,16 +56,16 @@ const AllSidebar = () => {
                         <NavLink className={({ isActive }) =>
                             `flex items-center px-4 py-2 my-2 transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
                             }`
-                        } to='/dashboard/all-users'>All Users</NavLink>
+                        } to='/dashboard/all-users'><PiUsersThreeFill className="mr-2"/>All Users</NavLink>
                         <NavLink className={({ isActive }) =>
                             `flex items-center px-4 py-2 my-2 transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
                             }`
-                        } to='/dashboard/all-blood-donation-admin'>All Blood Donation Request</NavLink>
+                        } to='/dashboard/all-blood-donation-admin'><VscGitPullRequestNewChanges className="mr-2" />All Blood Donation Request</NavLink>
                     
                         <NavLink className={({ isActive }) =>
                             `flex items-center px-4 py-2 my-2 transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
                             }`
-                        } to='/dashboard/content-management-admin'>ContentManagements</NavLink>
+                        } to='/dashboard/content-management-admin'><MdOutlineContentPasteGo className="mr-2" />ContentManagements</NavLink>
                     </div>
                 )}
             </div>

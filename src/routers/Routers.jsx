@@ -24,6 +24,7 @@ import AllBloodDonationAdmin from "../pages/dashboard/admin/allBloodDonation/All
 import ContentManagements from "../pages/dashboard/admin/contentManagement/ContentManagements";
 import ContentManagement from "../pages/dashboard/volunteer/contentManagement/ContentManagement";
 import AddBlog from "../pages/dashboard/volunteer/addBlog/AddBlog";
+import UpdateBlog from "../pages/dashboard/volunteer/updateBlog/UpdateBlog";
 
 
 const router = createBrowserRouter([
@@ -115,6 +116,10 @@ const router = createBrowserRouter([
         {
           path:'add-blog',
           element:<AddBlog />,
+        },
+        {
+          path:'update-blog/:id',
+          element:<UpdateBlog />,
         },
         // ============ volunteer dashboard part end ===============
 

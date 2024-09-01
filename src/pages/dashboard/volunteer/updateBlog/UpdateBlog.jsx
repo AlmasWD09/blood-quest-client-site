@@ -1,65 +1,66 @@
+import JoditEditor from "jodit-react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-// jodit react for..
-import { useState, useRef, useEffect, refetch} from 'react';
-import JoditEditor from 'jodit-react';
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import useAuth from "../../../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router-dom";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_API_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
-
-const AddBlog = () => {
-    const { user } = useAuth();
-    const navigate = useNavigate();
-    const axiosPublic = useAxiosPublic();
+const UpdateBlog = () => {
     const axiosSecure = useAxiosSecure();
-    const { register, handleSubmit, setValue} = useForm();
-
+    const axiosPublic = useAxiosPublic();
+    const {id} = useParams();
+    const navigate = useNavigate();
     const editor = useRef(null);
     const [content, setContent] = useState('');
+
+    
+    const { register, handleSubmit, setValue, formState: { errors }, } = useForm();
+
+    const { data: singleBlog = {},} = useQuery({
+        queryKey: ['single-blog',id],
+        queryFn: async () => {
+            const res = await axiosSecure(`/blogData/related/api/get/${id}`)
+            return res.data
+        }
+    })
+
+
 
     useEffect(() => {
         register('content', { required: true });
     }, [register]);
 
-
     const onSubmit = async (data) => {
 
-        // image upload imagebb
-        const imageFile = { image: data.image[0] }
-        const res = await axiosPublic.post(image_hosting_api, imageFile, {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        });
-
-        const blogInfo = {
-            status: 'draft',
+         // image upload imagebb
+         const imageFile = { image: data.image[0] }
+         const res = await axiosPublic.post(image_hosting_api, imageFile, {
+             headers: {
+                 'content-type': 'multipart/form-data'
+             }
+         });
+        const updateBlogInfo = {
             title: data.title,
             image: res.data.data.display_url,
-            name: user?.displayName,
-            email: user?.email,
             content: data.content,
-            postDate: new Date(),
         }
 
-      try{
-        const response = await axiosSecure.post('/blog/related/api/create', blogInfo);
-
-        console.log(response.data);
-        toast.success('Create blog successfully')
+       try{
+        const response = await axiosSecure.put(`/blog/related/api/update/${id}`, updateBlogInfo)
+        console.log(response);
+        toast.success('Blog update successfully')
         navigate('/dashboard/content-management-volunteer')
-      }
-      catch(error){
+       }
+       catch(error){
         toast.error(error)
-      }
-
-
+       }
     }
+
     return (
         <div>
             {/* blog form here...... */}
@@ -68,7 +69,7 @@ const AddBlog = () => {
                     <div className="relative  w-full max-w-4xl bg-primaryGray shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-8 rounded-lg">
                         <form onSubmit={handleSubmit(onSubmit)} className="">
                             <div>
-                                <h1 className="text-xl md:text-2xl text-secondery font-bold text-center  uppercase">Add Blog</h1>
+                                <h1 className="text-xl md:text-2xl text-secondery font-bold text-center  uppercase">Update Blog</h1>
                             </div>
                             <div className="flex flex-col md:flex-row gap-0 md:gap-4">
                                 {/* user title */}
@@ -81,6 +82,7 @@ const AddBlog = () => {
                                         <input
                                             type="text"
                                             name="title"
+                                            defaultValue={(singleBlog.title)}
                                             {...register("title", { required: true })}
                                             className="block w-full py-3 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Your Title" />
                                     </div>
@@ -107,7 +109,7 @@ const AddBlog = () => {
                                     tabIndex={1}
                                     onChange={(newContent) => {
                                         setContent(newContent);
-                                        setValue('content', newContent); // Update the form value with the editor content
+                                        setValue('content', newContent); 
                                     }}
                                 />
                             </div>
@@ -120,7 +122,7 @@ const AddBlog = () => {
 
                             {/* blog button */}
                             <div className="flex justify-center md:justify-end py-4 md:py-6">
-                                <button type="submit" className=" p-2 md:px-6 md:py-3 text-sm font-medium  text-white capitalize  bg-primary rounded-lg">Create Blog</button>
+                                <button type="submit" className=" p-2 md:px-6 md:py-3 text-sm font-medium  text-white capitalize  bg-primary rounded-lg">Update</button>
                             </div>
                         </form>
                     </div>
@@ -130,4 +132,4 @@ const AddBlog = () => {
     );
 };
 
-export default AddBlog;
+export default UpdateBlog;
