@@ -68,7 +68,7 @@ const UserProfile = () => {
     return (
         <>
             <section className="">
-                <div className="flex items-center justify-center min-h-screen px-6 ">
+                <div className=" flex items-center justify-center min-h-screen px-6 ">
                     <div className="relative bg-primaryGray w-full max-w-2xl shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-8 rounded-lg">
                         <div className="flex justify-between">
                             <button className="bg-primary text-white px-4 py-1 uppercase rounded-md">{role}</button>
@@ -79,8 +79,8 @@ const UserProfile = () => {
                    }
                         </div>
                         <form onSubmit={handleSubmit(onSubmit)} className="">
-                            <div className="">
-                                <h2 className=" pb-4 text-2xl font-medium text-center text-gray-800 capitalize border-blue-500 ">Profile</h2>
+                            <div className="w-full  -top-8  flex justify-center pt-3 md:pt-0">
+                                <img className="object-cover w-24 h-24 rounded-full" src={user?.photoURL} alt="" />
                             </div>
                             {/* user name */}
                             <div className="w-full mt-6">

@@ -109,6 +109,5 @@ DonorRow.propTypes = {
     category: PropTypes.object,
     refetch: PropTypes.func,
     serial: PropTypes.number,
-    
 };
 export default DonorRow;

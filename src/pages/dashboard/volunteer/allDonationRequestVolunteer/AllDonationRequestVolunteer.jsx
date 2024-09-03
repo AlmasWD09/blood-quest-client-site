@@ -6,14 +6,14 @@ import VolunteerRow from "../volunteerRow/VolunteerRow";
 
 const AllDonationRequestVolunteer = () => {
     const axiosSecure = useAxiosSecure();
-    const { data: alldonationRequestes = [] } = useQuery({
+    const { data: alldonationRequestes = [],refetch } = useQuery({
         queryKey: ['all-donation-request'],
         queryFn: async () => {
             const res = await axiosSecure.get('/allBlood/donation/request/volunteer/api/get');
             return res.data;
         }
     })
-    console.log(alldonationRequestes);
+
     return (
         <>
             <div className="text-center mt-10">
@@ -96,7 +96,7 @@ const AllDonationRequestVolunteer = () => {
                             <tbody>
                                 {
                                     alldonationRequestes.map((category, idx) => <tr key={idx}>
-                                        <VolunteerRow category={category}  serial ={idx+1}/>
+                                        <VolunteerRow category={category}  serial ={idx+1} refetch={refetch}/>
 
                                     </tr>)
                                     

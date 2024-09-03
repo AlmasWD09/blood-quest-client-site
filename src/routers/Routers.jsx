@@ -25,6 +25,8 @@ import ContentManagements from "../pages/dashboard/admin/contentManagement/Conte
 import ContentManagement from "../pages/dashboard/volunteer/contentManagement/ContentManagement";
 import AddBlog from "../pages/dashboard/volunteer/addBlog/AddBlog";
 import UpdateBlog from "../pages/dashboard/volunteer/updateBlog/UpdateBlog";
+import BloodDonationRequestUpdate from "../pages/dashboard/admin/bloodDonationRequestUpdate/BloodDonationRequestUpdate";
+import ViewDetails from "../pages/viewDetails/ViewDetails";
 
 
 const router = createBrowserRouter([
@@ -40,6 +42,10 @@ const router = createBrowserRouter([
         {
           path:'/donation-request',
           element:<DonationRequest />,
+        },
+        {
+          path:'/donation-request-view-details/:id',
+          element:<ViewDetails />,
         },
         {
           path:'/published-blogs',
@@ -141,6 +147,10 @@ const router = createBrowserRouter([
           {
             path:'content-management-admin',
             element:<ContentManagements />,
+          },
+          {
+            path:'blood-donation-request-update-admin/:id',
+            element:<BloodDonationRequestUpdate />,
           },
         // ============ admin dashboard part end ===============
       ]
