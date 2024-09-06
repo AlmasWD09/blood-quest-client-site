@@ -30,7 +30,7 @@ const AdminHome = () => {
             <div className="bg-green-200 px-16 py-8">
                 <h3>Total Users: <span className="text-xl font-bold">({totalCount.total_user})</span></h3>
             </div>
-            <div className="bg-green-200 px-16 py-8">Total Fundings <span className="text-xl font-bold">(0)</span></div>
+            <div className="bg-green-200 px-16 py-8">Total Fundings <span className="text-xl font-bold">${totalCount.total_funding_price}</span></div>
             <div className="bg-green-200 px-16 py-8">Total Blood Donation Request <span className="text-xl font-bold">({totalCount.total_blood_donation_request})</span></div>
         </div>
         </div>
