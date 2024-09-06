@@ -10,7 +10,7 @@ const DonorHome = () => {
     const { user, loading } = useAuth();
     const navigate = useNavigate();
     const [recentDonorRequestes, refetch, isPending] = useRecentDonorRequest();
-    console.log(recentDonorRequestes);
+
 
     // navigate by my-donation-request dashboard
     const handleNavigate = () => {

@@ -27,6 +27,8 @@ import AddBlog from "../pages/dashboard/volunteer/addBlog/AddBlog";
 import UpdateBlog from "../pages/dashboard/volunteer/updateBlog/UpdateBlog";
 import BloodDonationRequestUpdate from "../pages/dashboard/admin/bloodDonationRequestUpdate/BloodDonationRequestUpdate";
 import ViewDetails from "../pages/viewDetails/ViewDetails";
+import PrivatRoutes from "./PrivatRoutees";
+import PublishedDetails from "../components/publishedDetails/PublishedDetails";
 
 
 const router = createBrowserRouter([
@@ -45,11 +47,17 @@ const router = createBrowserRouter([
         },
         {
           path:'/donation-request-view-details/:id',
-          element:<ViewDetails />,
+          element:<PrivatRoutes>
+            <ViewDetails />
+          </PrivatRoutes>
         },
         {
           path:'/published-blogs',
           element:<PublishedBlogs />,
+        },
+        {
+          path:'/published-blogs-details/:id',
+          element:<PublishedDetails />,
         },
         {
           path:'/fundings',
