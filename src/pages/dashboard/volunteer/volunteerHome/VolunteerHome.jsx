@@ -15,7 +15,7 @@ const VolunteerHome = () => {
             return data;
         }
     });
-console.log(totalCount);
+
 
     if(loading) {
         return <LoadindSpenier />;

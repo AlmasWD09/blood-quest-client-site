@@ -13,3 +13,9 @@ nav a.active {
 
 
 
+  /* search page background clicp path add  */
+  .bg-clicp{
+    clip-path: polygon(0 0, 100% 0%, 100% 63%, 51% 76%, 0 64%);
+  }
+
+

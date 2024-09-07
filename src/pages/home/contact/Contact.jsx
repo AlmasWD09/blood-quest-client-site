@@ -13,7 +13,7 @@ const Contact = () => {
     return (
         <>
             <Container>
-                <div className=" mt-10 -mb-10">
+                <div className=" mt-10 -mb-10 md:px-28">
                     <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-0">
                         {/* contant */}
                         <div className=" w-[40%] text-white p-10 bg-primary space-y-5">

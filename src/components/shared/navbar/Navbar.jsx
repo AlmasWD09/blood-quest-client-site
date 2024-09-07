@@ -9,26 +9,26 @@ import useAuth from "../../../hooks/useAuth";
 import Button from "../Button";
 
 const Navbar = () => {
-    const { user,logOut} = useAuth();
+    const { user, logOut } = useAuth();
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
 
-const handleClick = () =>{
-    setIsOpen(!isOpen)
-}
-const handleNavigaet = () =>{
-    navigate('/')
-}
+    const handleClick = () => {
+        setIsOpen(!isOpen)
+    }
+    const handleNavigaet = () => {
+        navigate('/')
+    }
     return (
         <>
-            <div  className="bg-primaryGray">
+            <div className="bg-primaryGray fixed w-full">
                 <Container>
-                    <nav  className="relative flex justify-between items-center  py-6">
+                    <nav className="relative flex justify-between items-center  py-6">
                         {/* navbar website name and logo */}
                         <div className="w-[20%]">
-                            <div 
-                            onClick={handleNavigaet}
-                            className="flex items-center cursor-pointer">
+                            <div
+                                onClick={handleNavigaet}
+                                className="flex items-center cursor-pointer">
                                 <img className="w-[60%]" src={logo} alt="" />
                                 <h1 className="text-3xl md:text-5xl text-primary font-bold font-lato">Blood<span>Quest</span></h1>
                             </div>
@@ -39,54 +39,63 @@ const handleNavigaet = () =>{
                         <div className=" w-[60%] lg:flex lg:justify-center lg:items-center items-center hidden">
                             <div className="flex items-center">
                                 <NavLink to='/' >
-                                   <Button text={" Home"} />
+                                    <Button text={" Home"} />
                                 </NavLink>
                                 <NavLink to='/donation-request' >
-                                <Button text={"Donation Request"} />
-                                   
+                                    <Button text={"Donation Request"} />
+
                                 </NavLink>
                                 <NavLink to='/published-blogs' >
-                                <Button text={"Published Blogs"} />
-                                    
+                                    <Button text={"Published Blogs"} />
+
                                 </NavLink>
                                 <NavLink to='/fundings' >
-                                <Button text={"Fundings"} />
-                                    
+                                    <Button text={"Fundings"} />
+
                                 </NavLink>
-                                {
-                                    user && <NavLink to='/dashboard' >
-                                        <Button text={"Dashboard"} />
-                                    </NavLink>
-                                }
+                    
                             </div>
                         </div>
                         {/* navbar signup and login button */}
                         <div className=" w-[20%] lg:flex lg:justify-end hidden">
                             <div className="flex items-center gap-4">
+                                {
+                                    user && <div>
+                                    <Link to='/dashboard' className="text-xl font-semibold font-lato text-primary">Dashboard</Link>
+                                </div>
+                                }
                                 <Link to='/login'>
-                                    <button className="text-xl font-semibold font-lato py-2">Login</button>
+                                    <button className="text-lg font-semibold font-lato py-2">Login</button>
                                 </Link>
                                 {
-                                    user ? <div  className="relative focus:outline-none cursor-pointer">
-                                    <div className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full">
-                                        <img
-                                        onClick={handleClick}
-                                            src={user?.photoURL}
-                                            className="object-cover w-full h-full"
-                                            alt={user?.displayName}
-                                        />
-                                    </div>
-                                        {
-                                            isOpen && <button 
+                                    user ? <div className=" focus:outline-none cursor-pointer relative group">
+                                        <div className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full">
+                                            <img
+                                                onClick={handleClick}
+                                                src={user?.photoURL}
+                                                className="object-cover w-full h-full"
+                                                alt={user?.displayName}
+                                            />
+                                        </div>
+
+
+                                      {/* navbar logout button here... */}
+                                        <div className="hidden group-hover:inline-block absolute -top-[80px] md:top-[40px] md:bottom-[-80px]  md:right-0 z-10 bg-white text-black rounded-md shadow-sm px-4 ">
+                                            <span className="font-bold font-roboto text-secondery">
+                                                {user?.displayName}
+                                            </span>
+                                            <h2 className="font-medium text-sm text-secondery">{user?.email}</h2>
+                                            <button 
                                             onClick={logOut}
-                                            className="absolute bg-green-300 px-3 rounded">LogOut</button>
-                                        }
-                                </div>
+                                            className="absolute bg-gray-100 text-primary font-bold px-3 rounded ">Logout</button>
+                                        </div>
+                                    </div>
                                         :
                                         <Link to='/sign-up'>
                                             <button className="w-full px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Sign Up</button>
                                         </Link>
                                 }
+
                             </div>
                         </div>
 
@@ -115,20 +124,20 @@ const handleNavigaet = () =>{
                                 }`}
                         >
                             <div className="flex flex-col lg:hidden space-y-4">
-                            <NavLink to='/' >
-                                   <Button text={" Home"} />
+                                <NavLink to='/' >
+                                    <Button text={" Home"} />
                                 </NavLink>
                                 <NavLink to='/donation-request' >
-                                <Button text={"Donation Request"} />
-                                   
+                                    <Button text={"Donation Request"} />
+
                                 </NavLink>
                                 <NavLink to='/published-blogs' >
-                                <Button text={"Published Blogs"} />
-                                    
+                                    <Button text={"Published Blogs"} />
+
                                 </NavLink>
                                 <NavLink to='/fundings' >
-                                <Button text={"Fundings"} />
-                                    
+                                    <Button text={"Fundings"} />
+
                                 </NavLink>
                                 {
                                     user && <NavLink to='/dashboard' >
