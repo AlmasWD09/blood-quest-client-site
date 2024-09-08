@@ -21,7 +21,7 @@ const Navbar = () => {
     }
     return (
         <>
-            <div className="bg-primaryGray fixed w-full">
+            <div className="bg-primaryGray ">
                 <Container>
                     <nav className="relative flex justify-between items-center  py-6">
                         {/* navbar website name and logo */}

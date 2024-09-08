@@ -14,7 +14,7 @@ const Banner = () => {
         navigate('/search-page')
     }
     return (
-        <div className="h-[300px] md:h-[600px] bg-hero-bg bg-cover bg-center w-full flex items-center pt-[230px]">
+        <div className="h-[300px] md:h-[600px] bg-hero-bg bg-cover bg-center w-full flex items-center ">
             <Container>
                 <div className="md:max-w-[40%] bg-white rounded p-2 md:p-8 space-y-3 md:space-y-6">
                     <p className="text-xl font-semibold tracking-wide text-gray-800 dark:text-white lg:text-4xl">The application will feature
