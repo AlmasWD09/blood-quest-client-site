@@ -8,7 +8,7 @@ const SearchRow = ({ category, serial }) => {
 
     // view details for...
     const handleViewDetails = (id) => {
-        navigate(`/donation-request-view-details/${id}`)
+        navigate(`/search-view-details/${id}`)
     }
     return (
         <>

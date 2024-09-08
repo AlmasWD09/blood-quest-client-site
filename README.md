@@ -26,6 +26,8 @@
 - [firebase](https://firebase.google.com/)
 - [react-hoat-toast](https://react-hot-toast.com/)
 - [@headlessui/react](https://headlessui.com/)
+- [react-countup](https://www.npmjs.com/package/react-countup/)
+- [react-scroll-trigger](https://www.npmjs.com/package/react-scroll-trigger/)
 
 
 

@@ -29,6 +29,7 @@ import BloodDonationRequestUpdate from "../pages/dashboard/admin/bloodDonationRe
 import ViewDetails from "../pages/viewDetails/ViewDetails";
 import PrivatRoutes from "./PrivatRoutees";
 import PublishedDetails from "../components/publishedDetails/PublishedDetails";
+import SearchViewDetails from "../pages/searchViewDetails/SearchViewDetails";
 
 
 const router = createBrowserRouter([
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
         {
           path:'/search-page',
           element:<SearchPage />,
+        },
+        {
+          path:'/search-view-details/:id',
+          element:<SearchViewDetails />,
         },
       ],
     },

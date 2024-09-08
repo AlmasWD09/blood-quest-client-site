@@ -62,6 +62,7 @@ const handleCloseModal = () =>{
 
     if (loading || isLoading) return <LoadindSpenier />;
     return (
+      <>
         <Container>
             <div className="max-w-2xl mx-auto">
                 <h1 className="bg-green-300 text-xl md:text-2xl text-secondery font-bold text-center py-5 md:py-5 uppercase">
@@ -91,6 +92,7 @@ const handleCloseModal = () =>{
                 </div>
             </div>
         </Container>
+      </>
     );
 };
 
