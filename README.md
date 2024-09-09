@@ -28,6 +28,7 @@
 - [@headlessui/react](https://headlessui.com/)
 - [react-countup](https://www.npmjs.com/package/react-countup/)
 - [react-scroll-trigger](https://www.npmjs.com/package/react-scroll-trigger/)
+- [lottie-react](https://www.npmjs.com/package/lottie-react/)
 
 
 

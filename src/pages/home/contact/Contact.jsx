@@ -16,7 +16,7 @@ const Contact = () => {
                 <div className=" mt-10 -mb-10 md:px-28">
                     <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-0">
                         {/* contant */}
-                        <div className=" w-[40%] text-white p-10 bg-primary space-y-5">
+                        <div className="w-full md:w-[40%] text-white p-10 bg-primary space-y-5">
                             <h3 className="text-xl md:text-2xl  font-bold uppercase">Get in Touch</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
                             <p className="flex items-center"><FaLocationDot className="text-xl " /> Mymensingh-Fulbaria, Bangladesh</p>
@@ -25,7 +25,7 @@ const Contact = () => {
                         </div>
 
                         {/* input field here.... */}
-                        <div className=" w-[60%] bg-white py-5 px-10">
+                        <div className="w-full md:w-[60%] bg-white py-5 px-10">
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 {/*first name */}
                                 <div className="w-full mt-6">
@@ -34,7 +34,7 @@ const Contact = () => {
                                             type="name"
                                             name="first-name"
                                             {...register("first-name", { required: true })}
-                                            className="block w-full py-5 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Your First Name" />
+                                            className="block w-full py-2 md:py-5 pl-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300  focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Your First Name" />
                                     </div>
                                 </div>
 
@@ -45,7 +45,7 @@ const Contact = () => {
                                             type="name"
                                             name="last-name"
                                             {...register("last-name", { required: true })}
-                                            className="block w-full py-5 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Your Last Name" />
+                                            className="block w-full py-2 md:py-5 pl-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300  focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Your Last Name" />
                                     </div>
                                 </div>
 
@@ -56,7 +56,7 @@ const Contact = () => {
                                             type="email"
                                             name="email"
                                             {...register("email", { required: true })}
-                                            className="block w-full py-5 text-gray-700 bg-white border rounded-lg pl-3 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Your Email" />
+                                            className="block w-full py-2 md:py-5 pl-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300  focus:border-primary dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Your Email" />
                                     </div>
                                 </div>
 

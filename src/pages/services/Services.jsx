@@ -24,7 +24,7 @@ const Services = () => {
                         </div>
 
                         {/* Item 2 */}
-                        <div className="flex flex-col justify-center items-center bg-gray-100 px-10 py-8 lg:py-20 space-y-2 col-span-2">
+                        <div className="flex flex-col justify-center items-center bg-gray-100 px-10 py-8 lg:py-20 md:space-y-2 md:col-span-2">
                             <img src={service02} alt="Daily Fitness Training" />
                             <h2 className="text-xl md:text-3xl text-gray-600 font-semibold">Daily Fitness Training</h2>
                             <p className="text-center text-base lg:text-lg text-gray-600">The training enhances strength, endurance,<br />and flexibility through consistent exercise routines.</p>
