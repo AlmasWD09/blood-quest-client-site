@@ -10,7 +10,7 @@ const Home = () => {
     return (
         <div>
            <Banner />
-           <LottiFiles />
+           {/* <LottiFiles /> */}
            <Services />
            <BloodInfo />
            <Contact />

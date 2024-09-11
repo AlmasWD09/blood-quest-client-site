@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Navbar from "../../components/shared/navbar/Navbar";
 import { TfiClose } from "react-icons/tfi";
 // component(get data)
 import districts from "../../components/district.json"
@@ -11,6 +10,7 @@ import upazilas from "../../components/upazila.json"
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Header from "../../components/shared/header/Header";
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_API_KEY;
@@ -121,7 +121,7 @@ const SignUp = () => {
         return (
 
             <>
-                <Navbar />
+                <Header />
                 <section className="">
                     <div className="flex items-center justify-center min-h-screen px-6 ">
                         <div className="relative  w-full max-w-2xl bg-primaryGray shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-8 rounded-lg">

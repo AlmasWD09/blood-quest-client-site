@@ -12,9 +12,9 @@ const LottiFiles = () => {
         <>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 justify-center items-center">
         <Lottie className="w-full h-96" animationData={image01} loop={true} />
-        <Lottie className="w-full h-96 lg:h-44" animationData={image02} loop={true} />
+        <Lottie className="w-full h-72 md:h-44" animationData={image02} loop={true} />
         <Lottie className="w-full h-96" animationData={image03} loop={true} />
-        <Lottie className="w-full h-96" animationData={image04} loop={true} />
+        <Lottie className="w-full h-40 lg:h-96" animationData={image04} loop={true} />
         <Lottie className="w-full h-96 lg:h-44" animationData={image05} loop={true} />
         <Lottie className="w-full h-96 lg:h-56" animationData={image06} loop={true} />
         </div>

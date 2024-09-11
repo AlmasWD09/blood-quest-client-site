@@ -23,11 +23,11 @@ const BloodInfo = () => {
     return (
         <>
             <ScrollTrigger onEnter={() => setCounterState(true)} onExit={() => setCounterState(false)}>
-                <div className="bg-gray-100">
+                <div className=" lg:mt-20">
                     <Container>
                         <div className="flex flex-col md:flex-row justify-center md:justify-evenly gap-20 md:gap-0 text-center py-10">
                             <div className="flex flex-col justify-center items-center px-10 space-y-4">
-                                <span className="text-8xl text-yellow-700"><TbHeartQuestion /></span>
+                                <span className="text-8xl text-secondery"><TbHeartQuestion /></span>
                                 {
                                     counterState && <CountUp className="text-3xl md:text-4xl lg:text-[70px] font-semibold" start={0} end={totalCount.total_user} duration={5}>
                                         {totalCount.total_user}
@@ -38,7 +38,7 @@ const BloodInfo = () => {
 
                             
                             <div className="flex flex-col justify-center items-center px-10 space-y-4">
-                                <span className="text-8xl text-yellow-700"><FaPeopleCarry /></span>
+                                <span className="text-8xl text-secondery"><FaPeopleCarry /></span>
                                 {
                                     counterState && <CountUp className="text-3xl md:text-4xl lg:text-[70px] font-semibold" start={0} end={totalCount.total_funding_price} duration={5}>
                                         {totalCount.total_funding_price}
@@ -48,7 +48,7 @@ const BloodInfo = () => {
                             </div>
 
                             <div className="flex flex-col justify-center items-center px-10 space-y-4">
-                                <span className="text-8xl text-yellow-700"><GiCupidonArrow /></span>
+                                <span className="text-8xl text-secondery"><GiCupidonArrow /></span>
 
                                 {
                                     counterState && <CountUp className="text-3xl md:text-4xl lg:text-[70px] font-semibold" start={0} end={totalCount.total_blood_donation_request} duration={5}>

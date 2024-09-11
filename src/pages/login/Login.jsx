@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Navbar from "../../components/shared/navbar/Navbar";
 import { TfiClose } from "react-icons/tfi";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import Header from "../../components/shared/header/Header";
 
 
 const Login = () => {
@@ -34,7 +34,7 @@ const Login = () => {
     }
     return (
         <>
-            <Navbar />
+            <Header />
             <section className="">
                 <div className="flex items-center justify-center min-h-screen px-6 ">
                     <div className="relative bg-primaryGray w-full max-w-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-8 rounded-lg">
