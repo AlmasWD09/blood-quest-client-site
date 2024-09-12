@@ -23,11 +23,11 @@ const VolunteerHome = () => {
     return (
         <div className="h-screen">
         <div className="text-center mt-10">
-            <h1 className="text-5xl font-semibold text-green-500">Hellow <span className="uppercase">{user?.displayName}</span> Wellcome!!</h1>
+            <h1 className="text-3xl lg:text-5xl font-semibold text-green-500">Hellow <span className="uppercase">{user?.displayName}</span> Wellcome!!</h1>
             <p className="text-xl font-semibold text-green-700">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia voluptatibus exercitationem voluptates.</p>
         </div>
         {/* ********* */}
-        <div className="flex justify-center gap-4 mt-10">
+        <div className="flex flex-col lg:flex-row justify-center gap-4 mt-10 ">
             <div className="bg-green-200 px-16 py-8">
                 <h3>Total Users: <span className="text-xl font-bold">({totalCount.total_user})</span></h3>
             </div>

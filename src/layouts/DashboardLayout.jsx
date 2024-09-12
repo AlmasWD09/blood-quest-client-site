@@ -1,23 +1,28 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/shared/sidebar/Sidebar";
+import Header from "../components/shared/header/Header";
+
 
 
 const DashboardLayout = () => {
-    return (
-        <div className="relative min-h-screen md:flex">
-          {/* sidebar */}
-          <div>
-          <Sidebar />
-          </div>
+  return (
+    <>
+     <div className="min-h-screen flex flex-col lg:flex-row gap-3 ">
 
-          {/* outlet */}
-          <div className="flex-1 md:ml-64">
-            <div className="p-5">
-            <Outlet />
-            </div>
-          </div>
-        </div>
-    );
+      <div className="bg-gray-100 w-full lg:w-[20%] flex flex-col">
+       <Sidebar />
+      </div>
+
+
+      <div className="">
+        <Outlet />
+      </div>
+
+
+
+     </div>
+    </>
+  );
 };
 
 export default DashboardLayout;

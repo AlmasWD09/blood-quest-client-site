@@ -21,7 +21,7 @@ const ViewDetails = () => {
             return res.data;
         }
     });
-    const { status, requesterName, requesterEmail, recipientName, hospitalName, district, upazila, donationDate, donationTime, fullAddress, bloodGroup, description } = singelRequestData || {};
+    const {status, requesterName, requesterEmail, recipientName, hospitalName, district, upazila, donationDate, donationTime, fullAddress, bloodGroup, description } = singelRequestData || {};
 
     // single user data by mongodb
     const { data: userData = {}, } = useQuery({
@@ -85,7 +85,7 @@ const handleCloseModal = () =>{
                         disabled={userData?.bloodGroup !== bloodGroup}
                         onClick={handleOpenModal}
                         className={`p-2 md:px-6 md:py-3 text-sm font-medium tracking-wide capitalize transition-colors duration-300 transform rounded-lg mt-4 ${
-                            userData?.bloodGroup !== bloodGroup ? 'bg-gray-400 text-gray-200' : 'bg-primary text-white'
+                            userData?.bloodGroup !== bloodGroup ? 'bg-gray-400 text-gray-200 cursor-not-allowed' : 'bg-primary text-white'
                           }`}>Donate</button>
                         <DonateModal isOpen={isOpen} onClose={handleCloseModal} />
                     </div>

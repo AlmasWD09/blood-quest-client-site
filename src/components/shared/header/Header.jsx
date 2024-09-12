@@ -11,19 +11,14 @@ import Container from "../Container";
 const Header = () => {
     const { user, logOut } = useAuth();
     const navigate = useNavigate();
-    // const [toggleMenuActive, setToggleMenuActive] = useState(true);
     const [isOpen, setIsOpen] = useState(true);
-
-    const handleClick = () => {
-        setIsOpen(!isOpen)
-    }
 
     const handleNavigaet = () => {
         navigate('/')
     }
     return (
         <>
-            <header className="sticky top-0 left-0 z-[99999] shadow-md w-full h-[80px]  py-4 md:py-2 bg-primaryGray">
+            <header className="sticky top-0 left-0 z-[99999] shadow-md w-full h-[80px]  py-4 md:py-2 bg-primaryGray overflow-y-hidden">
                 <Container>
                     <div className=" flex items-center">
                         <nav className="relative container flex justify-between items-center">
@@ -86,9 +81,16 @@ const Header = () => {
                                             <Link to='/login'>
                                                 <button className="w-full text-lg font-semibold font-lato py-2 mt-2">Login</button>
                                             </Link>
-                                            <Link to='/sign-up'>
-                                                <button className="w-full px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Sign Up</button>
-                                            </Link>
+                                            {
+                                                user ? 
+                                                    <button
+                                                    onClick={logOut}
+                                                    className="w-full px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Logout</button>
+                                                    :
+                                                    <Link to='/sign-up'>
+                                                        <button className="w-full px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Sign Up</button>
+                                                    </Link>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +132,6 @@ const Header = () => {
                                         user ? <div className=" focus:outline-none cursor-pointer relative group">
                                             <div className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full">
                                                 <img
-                                                    onClick={handleClick}
                                                     src={user?.photoURL}
                                                     className="object-cover w-full h-full"
                                                     alt={user?.displayName}
@@ -139,7 +140,7 @@ const Header = () => {
 
 
                                             {/* navbar logout button here... */}
-                                            <div className="hidden group-hover:inline-block absolute -top-[80px] md:top-[40px] md:bottom-[-80px]  md:right-0 z-10 bg-white text-black rounded-md shadow-sm px-4 ">
+                                            <div className="hidden group-hover:inline-block absolute -top-[80px] md:top-[40px] md:bottom-[-80px] md:right-0 z-[100000] bg-white text-black rounded-md shadow-sm px-4">
                                                 <span className="font-bold font-roboto text-secondery">
                                                     {user?.displayName}
                                                 </span>

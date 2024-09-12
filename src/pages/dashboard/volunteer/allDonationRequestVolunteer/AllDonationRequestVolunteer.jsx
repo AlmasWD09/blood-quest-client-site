@@ -16,18 +16,19 @@ const AllDonationRequestVolunteer = () => {
 
     return (
         <>
-            <div className="text-center mt-10">
+            <div className="text-center ">
                 <h1 className="text-xl md:text-2xl text-secondery font-bold text-center pb-5 md:py-5 uppercase">All Donation Request</h1>
             </div>
+            
             {/* donation request table */}
-            <div className=''>
+            <div className=' overflow-hidden'>
                 {
                     alldonationRequestes.length === 0 ? (
                       <EmptyPage />
                     ) 
                     :
                     <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
-                    <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
+                    <div className='inline-block min-w-full shadow rounded-lg '>
                         <table className='min-w-full leading-normal'>
                             <thead>
                                 <tr>
@@ -93,7 +94,7 @@ const AllDonationRequestVolunteer = () => {
                                 </tr>
                             </thead>
                             {/* dynamic data for donor row */}
-                            <tbody>
+                            <tbody className="">
                                 {
                                     alldonationRequestes.map((category, idx) => <tr key={idx}>
                                         <VolunteerRow category={category}  serial ={idx+1} refetch={refetch}/>

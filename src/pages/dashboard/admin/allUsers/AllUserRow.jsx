@@ -39,7 +39,7 @@ const AllUserRow = ({ singleUser, refetch }) => {
     return (
         <>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                <img className='w-16 h-16 rounded-lg' src={image} alt="" />
+                <img className='w-10 h-10 lg:w-16 lg:h-16 rounded-lg' src={image} alt="" />
             </td>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                 {email}

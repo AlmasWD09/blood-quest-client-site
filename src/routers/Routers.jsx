@@ -30,6 +30,7 @@ import ViewDetails from "../pages/viewDetails/ViewDetails";
 import PrivatRoutes from "./PrivatRoutees";
 import PublishedDetails from "../components/publishedDetails/PublishedDetails";
 import SearchViewDetails from "../pages/searchViewDetails/SearchViewDetails";
+import AdminRoute from "./AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -62,7 +63,9 @@ const router = createBrowserRouter([
         },
         {
           path:'/fundings',
-          element:<Fundings />,
+          element:<PrivatRoutes>
+            <Fundings />
+          </PrivatRoutes>,
         },
         {
           path:'/search-page',
@@ -147,23 +150,33 @@ const router = createBrowserRouter([
         // ============ admin dashboard part start =============
           {
             path:'admin-home',
-            element:<AdminHome />,
+            element:<AdminRoute>
+              <AdminHome />
+            </AdminRoute>,
           },
           {
             path:'all-users',
-            element:<AllUsers />,
+            element:<AdminRoute>
+              <AllUsers />
+            </AdminRoute>,
           },
           {
             path:'all-blood-donation-admin',
-            element:<AllBloodDonationAdmin />,
+            element:<AdminRoute>
+            <AllBloodDonationAdmin />
+          </AdminRoute>,
           },
           {
             path:'content-management-admin',
-            element:<ContentManagements />,
+            element:<AdminRoute>
+              <ContentManagements />
+            </AdminRoute>,
           },
           {
             path:'blood-donation-request-update-admin/:id',
-            element:<BloodDonationRequestUpdate />,
+            element:<AdminRoute>
+              <BloodDonationRequestUpdate />
+            </AdminRoute>,
           },
         // ============ admin dashboard part end ===============
       ]

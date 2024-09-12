@@ -14,12 +14,12 @@ const AllBloodDonationAdmin = () => {
             return res.data;
         }
     })
-    console.log(allDonationData);
 
     return (
-        <div>
-            <h1 className="text-xl md:text-2xl text-secondery font-bold text-center pb-5 md:py-5 uppercase">all blood donation request</h1>
-            <div className=''>
+        <div className="mt-20 lg:mt-0">
+            <h1 className="text-lg sm:text-xl md:text-2xl text-secondery font-bold text-center py-5 md:py-5 uppercase ">all blood donation request</h1>
+
+            <div className='overflow-hidden '>
                 {
                     allDonationData.length === 0 ? (
                       <EmptyPage />
@@ -69,6 +69,12 @@ const AllBloodDonationAdmin = () => {
                                         className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                                     >
                                         Status
+                                    </th>
+                                    <th
+                                        scope='col'
+                                        className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                                    >
+                                        Change Status
                                     </th>
                                     <th
                                         scope='col'

@@ -45,7 +45,7 @@ const MyDonationRequest = () => {
                 </div>
             </div>
             {/* donation request table */}
-            <div className=''>
+            <div className='overflow-hidden'>
                 {
                     alldonorRequestes.length === 0 ? (
                       <EmptyPage />

@@ -27,7 +27,7 @@ const ContentManagement = () => {
     }
     return (
         <div>
-            <h1 className="text-xl md:text-2xl text-secondery font-bold text-center pb-5 md:py-5 uppercase">Content Management volunteer</h1>
+            <h1 className="text-xl md:text-2xl text-secondery font-bold text-center py-10 md:py-5  uppercase">Content Management volunteer</h1>
             <div className="flex justify-center gap-6">
                 <button
                     onClick={handleBlog}
@@ -45,7 +45,7 @@ const ContentManagement = () => {
 
             </div>
             {/* all blog curd here.... */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-16 px-4 lg:px-0">
                 {
                     allBlogs.map((blog, idx) => {
                         return (

@@ -3,16 +3,36 @@ import useAuth from "../../../hooks/useAuth";
 import { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import PropTypes from 'prop-types';
+import { useNavigate, useParams } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 
 
-const DonateModal = ({ isOpen, onClose}) => {
+const DonateModal = ({ isOpen, onClose }) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
+  const {id} = useParams()
+
   const { register, handleSubmit, } = useForm();
 
-  const onSubmit = async (data) => {
-    console.log(data);
+  const onSubmit = async(data) => {
+    const donationInfo = {
+      name : data.name,
+      email : data.email,
+      status : 'inprogress'
+    }
+
+    const response = await axiosSecure.put(`/navbar/pending/requests/update/${id}`, donationInfo);
+    if (response.data.modifiedCount > 0) {
+        toast.success('Your donation received successfully');
+        onClose();
+        navigate('/donation-request')
+    }
   }
+
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -47,7 +67,7 @@ const DonateModal = ({ isOpen, onClose}) => {
                   >
                     Donate blood to help others
                   </DialogTitle>
-                  <form onSubmit={handleSubmit(onSubmit)}  className='space-y-3 pt-3'>
+                  <form onSubmit={handleSubmit(onSubmit)} className='space-y-3 pt-3'>
                     <div>
                       {/* user name */}
                       <div className="w-full mt-6">
@@ -85,8 +105,8 @@ const DonateModal = ({ isOpen, onClose}) => {
 
                     {/* modal button here.. */}
                     <div className='flex mt-2 justify-between gap-5'>
-                    <button
-                        type='button'
+                      <button
+                        type='submit'
                         className='inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2'>
                         Confirm
                       </button>

@@ -9,6 +9,14 @@ const BlogCurd = ({ blog, refetch }) => {
     const [role] = useRole();
     const axiosSecure = useAxiosSecure();
     const { _id, image, title, status, content, postDate } = blog || {};
+    const dateString = postDate;
+
+    // Convert to Date object
+    const datee = new Date(dateString);
+
+    // Extract the date part in ISO 8601 format (YYYY-MM-DD)
+    const ConvertDate = datee.toISOString().slice(0, 10);
+
     const navigate = useNavigate();
 
     // delete blog for..
@@ -110,7 +118,7 @@ const BlogCurd = ({ blog, refetch }) => {
 
                             </div>
                         }
-                        <span className='absolute top-0 right-0'>{postDate}</span>
+                        <span className='absolute top-0 right-0 bg-white p-2 rounded'>{ConvertDate}</span>
                     </div>
                 </div>
             </div>
