@@ -47,7 +47,7 @@ const Contact = () => {
                 <div className=" mt-10  lg:px-28">
                     <div className="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-0">
                         {/* contant */}
-                        <div className="w-full md:w-[50%] lg:w-[40%] text-white p-10 md:py-14 lg:py-28 bg-primary space-y-5">
+                        <div className="w-full md:w-[50%] lg:w-[40%] text-white p-10 md:py-14 lg:py-28 bg-primary rounded-2xl space-y-5">
                             <h3 className="text-xl md:text-3xl  font-bold uppercase">Get in Touch</h3>
                             <p className="text-lg font-semibold text-gray-100">Have questions or need assistance? Contact us today to learn more about donating blood and saving lives.</p>
                             <hr />

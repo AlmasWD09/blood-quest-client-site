@@ -14,7 +14,7 @@ const Banner = () => {
         navigate('/search-page')
     }
     return (
-       <div className="h-[300px] md:h-[600px] bg-hero-bg bg-cover bg-center w-full flex items-center "> 
+       <div className="h-[300px] md:h-[600px] bg-hero-bg bg-cover bg-center w-full flex items-center"> 
             <Container>
                 <div className="md:max-w-[80%] lg:max-w-[40%] md:mx-auto lg:mx-0 bg-white rounded p-4 lg:p-8 space-y-3 md:space-y-6">
                     <p className="text-xl lg:text-4xl font-semibold tracking-wide text-gray-800 ">Streamlined experience, allowing users to join as blood donors or search for donors with ease.</p>

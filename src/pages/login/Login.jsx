@@ -40,7 +40,7 @@ const Login = () => {
                     <div className="relative bg-primaryGray w-full max-w-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-8 rounded-lg">
                         <form onSubmit={handleSubmit(onSubmit)} className="">
                             <div className="">
-                                <h2 className=" pb-4 font-medium text-center text-gray-800 capitalize border-blue-500 dark:border-blue-400 dark:text-white">Please Login</h2>
+                                <h2 className="text-2xl md:text-3xl font-lato pb-4 font-bold text-center text-gray-500 capitalize border-blue-500 dark:border-blue-400 dark:text-white">Please Login</h2>
                             </div>
 
                             {/* user email */}

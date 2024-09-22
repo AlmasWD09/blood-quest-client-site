@@ -112,8 +112,12 @@ const Header = () => {
                                     </NavLink>
                                     <NavLink to='/fundings' >
                                         <Button text={"Fundings"} />
-
                                     </NavLink>
+                                    {
+                                        user && <NavLink to='/dashboard' >
+                                            <Button text={"Dashboard"} />
+                                        </NavLink>
+                                    }
 
                                 </div>
                             </div>

@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
 import PropTypes from 'prop-types';
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 
@@ -12,6 +13,7 @@ export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const axiosPublic = useAxiosPublic()
 
 
    
@@ -50,13 +52,24 @@ const AuthProvider = ({ children }) => {
     // obserber
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+            const loggUser = currentUser?.email || user?.email;
+            const userInfo = { email: loggUser};
+            
             setUser(currentUser);
+            if (currentUser) {
+                // get token and store client
+                axiosPublic.post('/jwt', userInfo,{withCredentials:true})
+                    .then(res=>console.log(res.data))
+            }
+            else {
+               axiosPublic.post('/logout', userInfo, {withCredentials: true})
+            }
            setLoading(false)
         });
         return () => {
             unSubscribe();
         }
-    }, [])
+    }, [axiosPublic,user?.email])
 
 
     const authInfo = {
