@@ -1,7 +1,7 @@
 
 # project-name
 
-- [Live Site](https://blood-quest.web.app):
+- [Live Site](https://blood-quest.web.app/):
 - [server-site-github-link](url):
 
 
