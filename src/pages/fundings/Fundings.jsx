@@ -38,7 +38,7 @@ const axiosSecure = useAxiosSecure();
             <div className="flex justify-center">
                 <button
                 onClick={handleOpenModal}
-                className="border-2 border-primary p-2 rounded-md font-bold">Give Funding</button>
+                className="bg-secondery hover:bg-primary text-white px-4 py-1 lg:p-2 rounded-md md:font-semibold">Give Funding</button>
                 <FundModal isOpen={isOpen} onClose={handleCloseModal} setIsOpen={setIsOpen} refetch={refetch}/>
             </div>
              {/* funding table here... */}

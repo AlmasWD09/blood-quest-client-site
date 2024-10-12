@@ -12,7 +12,7 @@ import { FaHome } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 
 const Sidebar = () => {
-const {logOut} = useAuth();
+    const { logOut } = useAuth();
     const [isOpen, setIsOpen] = useState(true);
 
 
@@ -20,7 +20,7 @@ const {logOut} = useAuth();
     return (
         <div>
             {/* mobile device for... */}
-            <div className="fixed top-0 left-0 z-[99999] shadow-md w-full h-[80px] px-4 py-4 md:py-2 bg-primaryGray  lg:hidden">
+            <div className="fixed top-0 left-0 z-[99999] shadow-md w-full h-[80px] pl-3 py-4 md:py-2 bg-primaryGray  lg:hidden">
                 <div
                     className="flex items-center cursor-pointer">
                     <img className="w-[40px]" src={logo} alt="" />
@@ -46,16 +46,16 @@ const {logOut} = useAuth();
                 {/* mobile menu */}
                 <div
                     className={`${isOpen ? "-right-full" : "right-0"
-                        }  w-2/3 h-screen py-4 fixed  top-[78px] z-[999999] bg-green-400  shadow-md flex flex-col space-y-4 my-transition`}>
+                        }  w-2/3 h-screen py-4 fixed  top-[78px] z-[999999] bg-gray-100  shadow-md flex flex-col space-y-4 my-transition`}>
                     <AllSidebar />
                     <hr />
                     <div>
                         <NavLink className={({ isActive }) =>
-                            `flex items-center px-4 py-2 my-2 transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                            `flex items-center pl-3 py-2 my-2 transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
                             }`
                         } to='/'><FaHome className="mr-2" />Home</NavLink>
                         <NavLink className={({ isActive }) =>
-                            `flex items-center px-4 py-2 my-2 transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                            `flex items-center pl-3 py-2 my-2 transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
                             }`
                         } to='/login'><VscGitPullRequestGoToChanges className="mr-2" />Logout</NavLink>
                     </div>
@@ -63,29 +63,31 @@ const {logOut} = useAuth();
             </div>
 
             {/* tablet & dastop device */}
-            <div className="hidden lg:block">
+            <div className="bg-gray-50 h-screen lg:block border-px-1 py-1 fixed hidden">
                 <AllSidebar />
-                <hr />
-                {/* Profile Menu */}
-                <NavLink
+                <hr className="my-6" />
+                <div className="flex flex-col gap-2">
+                    {/* Profile Menu */}
+                    <NavLink
                         to='/dashboard/profile'
                         className={({ isActive }) =>
-                            `flex items-center px-4 py-2 my-2 transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'}`}>
-                        <FcSettings className='w-5 h-5' />
+                            `flex items-center  px-4 py-2 transition-colors duration-300 transform  hover:bg-primaryGray   hover:text-gray-700 ${isActive ? 'bg-primaryGray text-gray-700 border-l-4 border-red-500' : 'text-gray-600'
+                            }`}>
+                        <FcSettings className='mr-2' />
 
-                        <span className='mx-1 font-medium'>Profile</span>
+                        <span className='mx-1'>Profile</span>
                     </NavLink>
-                <div>
+                    
                     <NavLink className={({ isActive }) =>
-                        `flex items-center px-4 py-2 my-2 transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                        }`
+                            `flex items-center  px-4 py-2 transition-colors duration-300 transform  hover:bg-primaryGray   hover:text-gray-700 ${isActive ? 'bg-primaryGray text-gray-700 border-l-4 border-red-500' : 'text-gray-600'
+                            }`
                     } to='/'><FaHome className="mr-2" />Home</NavLink>
                     <NavLink
-                    onClick={logOut}
-                    className={({ isActive }) =>
-                        `flex items-center px-4 py-2 my-2 transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                        }`
-                    } to='/login'><VscGitPullRequestGoToChanges className="mr-2" />Logout</NavLink>
+                        onClick={logOut}
+                        className={({ isActive }) =>
+                            `flex items-center  px-4 py-2 transition-colors duration-300 transform  hover:bg-primaryGray   hover:text-gray-700 ${isActive ? 'bg-primaryGray text-gray-700 border-l-4 border-red-500' : 'text-gray-600'
+                            }`
+                        } to='/login'><VscGitPullRequestGoToChanges className="mr-2" />Logout</NavLink>
                 </div>
             </div>
         </div>

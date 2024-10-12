@@ -17,7 +17,7 @@ const DonationRequest = () => {
     return (
         <>
             <Container>
-                <div>
+                <div className="mt-6 md:mt-0">
                     <h1 className="text-xl md:text-2xl text-secondery font-bold text-center pb-5 md:py-5 uppercase">Blood Donation request</h1>
                     {/* donation table here... */}
                     <div className='py-0'>

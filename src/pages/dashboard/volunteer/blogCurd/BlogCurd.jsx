@@ -65,6 +65,9 @@ const BlogCurd = ({ blog, refetch }) => {
         }
 
     }
+
+    // Method 1: Using regex
+    const convertedContent = content.replace(/<[^>]*>/g, '');
     return (
         <>
             <div className='relative flex flex-col  bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-lg md:min-h-52 hover:bg-gray-100'>
@@ -76,9 +79,9 @@ const BlogCurd = ({ blog, refetch }) => {
                 <div className='p-4 space-y-4'>
                     <h1 className=' font-bold  text-gray-900 '>{title}</h1>
                     {
-                        content.length > 20 ? <p className='font-normal text-gray-700'>{content.slice(0, 20)} <Link>Read More....</Link></p>
+                        convertedContent?.length > 70 ? <p className='mb-3 font-normal text-gray-700 dark:text-gray-400'>{convertedContent.slice(0, 70)} <span className="text-primary semifont-bold cursor-pointer">More...</span></p>
                             :
-                            <p className='font-normal text-gray-700'>{content}</p>
+                            <p>{convertedContent}</p>
                     }
                     <div>
                         <div className='flex justify-between gap-4'>

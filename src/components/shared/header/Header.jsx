@@ -18,7 +18,7 @@ const Header = () => {
     }
     return (
         <>
-            <header className="sticky top-0 left-0 z-[99999] shadow-md w-full h-[80px]  py-4 md:py-2 bg-primaryGray overflow-y-hidden">
+            <header className="sticky top-0 left-0 z-[99999] shadow-md w-full   py-4 lg:py-6 bg-primaryGray overflow-y-hidden">
                 <Container>
                     <div className=" flex items-center">
                         <nav className="relative container flex justify-between items-center">
@@ -27,8 +27,8 @@ const Header = () => {
                                 <div
                                     onClick={handleNavigaet}
                                     className="flex items-center cursor-pointer">
-                                    <img className="w-[60%]" src={logo} alt="" />
-                                    <h1 className="text-3xl md:text-5xl text-primary font-bold font-lato">Blood<span>Quest</span></h1>
+                                    <img className="w-[40px] md:w-[50px]" src={logo} alt="" />
+                                    <h1 className="text-3xl lg:text-4xl text-primary font-bold font-lato">Blood<span>Quest</span></h1>
                                 </div>
                             </div>
 
@@ -51,7 +51,7 @@ const Header = () => {
                             {/* mobile menu */}
                             <div
                                 className={`${isOpen ? "-right-full" : "right-0"
-                                    }  w-2/3 h-screen p-4 fixed  top-[78px] z-[999999] bg-primaryGray  shadow-md flex flex-col space-y-4 my-transition`}
+                                    }  w-2/3 h-screen p-4 fixed  top-[70px] md:top-[65px] z-[999999] bg-primaryGray  shadow-md flex flex-col space-y-4 my-transition`}
                             >
                                 <div className="flex flex-col lg:hidden space-y-4">
                                     <NavLink to='/' >
@@ -113,12 +113,6 @@ const Header = () => {
                                     <NavLink to='/fundings' >
                                         <Button text={"Fundings"} />
                                     </NavLink>
-                                    {
-                                        user && <NavLink to='/dashboard' >
-                                            <Button text={"Dashboard"} />
-                                        </NavLink>
-                                    }
-
                                 </div>
                             </div>
                             {/* navbar signup and login button */}

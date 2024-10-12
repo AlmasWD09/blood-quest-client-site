@@ -7,7 +7,7 @@ import Container from "../shared/Container";
 
 
 const PublishedDetails = () => {
-    const { loading } = useAuth();
+    const { user, loading } = useAuth();
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
 
@@ -19,34 +19,35 @@ const PublishedDetails = () => {
             return res.data;
         }
     });
-    const { _id, image, title, status, content, postDate } = singlePublishedData || {};
+
+    const { _id, name,photo, image, title, status, content, postDate } = singlePublishedData || {};
+
+    // Method 1: Using regex
+  const convertedContent = content?.replace(/<[^>]*>/g, '');
 
     if (loading || isLoading) return <LoadindSpenier />
     return (
         <>
             <Container>
-                <div className="max-w-2xl mx-auto  bg-white rounded-lg shadow-md ">
+                <div className="max-w-2xl mx-auto  bg-white rounded-lg shadow-md mt-2">
                     <img
                         className="object-cover object-center w-full h-64 md:h-96 rounded-lg"
                         src={image}
-                        alt=""
+                        alt={name}
                     />
 
                     <div className="p-6">
                         <div>
-                            <span className="text-xs font-medium text-blue-600 ">{status}</span>
-                            <a
-                                href="#"
+                            <p><span className="text-xs font-medium text-blue-600 ">{status}</span> ({_id})</p>
+                            <h3
                                 className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline"
                                 tabIndex="0"
                                 role="link"
                             >
-                                I Built A Successful Blog In One Year
-                            </a>
+                                {title}
+                            </h3>
                             <p className="mt-2 text-sm text-gray-600 ">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie parturient et sem ipsum volutpat vel.
-                                Natoque sem et aliquam mauris egestas quam volutpat viverra. In pretium nec senectus erat. Et malesuada
-                                lobortis.
+                                {convertedContent}
                             </p>
                         </div>
 
@@ -54,9 +55,9 @@ const PublishedDetails = () => {
                             <div className="flex items-center">
                                 <div className="flex items-center">
                                     <img
-                                        className="object-cover h-10 rounded-full"
-                                        src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60"
-                                        alt="Avatar"
+                                        className="object-cover h-10 rounded-full ring-2"
+                                        src={photo}
+                                        alt={name}
                                     />
                                     <a
                                         href="#"
@@ -64,10 +65,10 @@ const PublishedDetails = () => {
                                         tabIndex="0"
                                         role="link"
                                     >
-                                        Jone Doe
+                                        {user?.displayName}
                                     </a>
                                 </div>
-                                <span className="mx-1 text-xs text-gray-600 ">21 SEP 2015</span>
+                                <span className="mx-1 text-xs text-gray-600 ">{postDate}</span>
                             </div>
                         </div>
                     </div>

@@ -16,7 +16,8 @@ const AllDonationRequestVolunteer = () => {
 
     return (
         <>
-            <div className="text-center ">
+        <div className="mt-24 md:mt-0">
+        <div className="text-center ">
                 <h1 className="text-xl md:text-2xl text-secondery font-bold text-center pb-5 md:py-5 uppercase">All Donation Request</h1>
             </div>
             
@@ -110,6 +111,7 @@ const AllDonationRequestVolunteer = () => {
                 }
               
             </div>
+        </div>
         </>
     );
 };

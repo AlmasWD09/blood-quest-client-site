@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
 
-const DonationRequestRow = ({ category,serial }) => {
-    const {_id,recipientName,district,upazila,donationDate,donationTime} = category || {};
-  
+const DonationRequestRow = ({ category, serial }) => {
+    const { _id, recipientName, district, upazila, donationDate, donationTime } = category || {};
+
 
     const navigate = useNavigate();
 
-     // time convert 24 hour to 12 hour
-     const hourConvert = (time24) => {
+    // time convert 24 hour to 12 hour
+    const hourConvert = (time24) => {
         // At first split the time into hour & munite and convert in number
         const [hour24, munite] = time24.split(':').map(Number);
 
@@ -30,10 +30,10 @@ const DonationRequestRow = ({ category,serial }) => {
     };
     const convertTime = hourConvert(donationTime);
 
-// view details for...
-const handleViewDetails = (id) =>{
-   navigate (`/donation-request-view-details/${id}`)
-}
+    // view details for...
+    const handleViewDetails = (id) => {
+        navigate(`/donation-request-view-details/${id}`)
+    }
     return (
         <>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -46,15 +46,15 @@ const handleViewDetails = (id) =>{
                 {upazila}, {district}
             </td>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-            {donationDate}
+                {donationDate}
             </td>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-            {convertTime}
+                {convertTime}
             </td>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-            <button 
-            onClick={()=>handleViewDetails(_id)}
-            className="border-2 border-primary p-2 rounded-md font-bold">View Details</button>
+                <button
+                    onClick={() => handleViewDetails(_id)}
+                    className="bg-secondery hover:bg-primary text-white px-4 py-1 lg:p-2 rounded-md md:font-semibold">View Details</button>
             </td>
         </>
     );
