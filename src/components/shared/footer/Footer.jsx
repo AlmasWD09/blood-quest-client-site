@@ -55,10 +55,10 @@ const Footer = () => {
                                 <h1 className="text-3xl font-semibold font-lato">Quick links</h1>
                                 <span className="w-20 h-[3px] rounded-full bg-primary"></span>
                                 <ul>
-                                    <Link to='/'><li className="hover:text-primary cursor-pointer flex items-center"><IoMdArrowDropleft className="text-3xl" />Home</li></Link>
-                                    <Link to='/donation-request'><li className="hover:text-primary cursor-pointer flex items-center"><IoMdArrowDropleft className="text-3xl" />Donation Request</li></Link>
-                                    <Link to='/published-blogs'><li className="hover:text-primary cursor-pointer flex items-center"><IoMdArrowDropleft className="text-3xl" />Published Blogs</li></Link>
-                                    <Link to='/fundings'><li className="hover:text-primary cursor-pointer flex items-center"><IoMdArrowDropleft className="text-3xl" />Foundings</li></Link>
+                                    <Link to='/'><li className="hover:text-secondery cursor-pointer flex items-center"><IoMdArrowDropleft className="text-3xl" />Home</li></Link>
+                                    <Link to='/donation-request'><li className="hover:text-secondery cursor-pointer flex items-center"><IoMdArrowDropleft className="text-3xl" />Donation Request</li></Link>
+                                    <Link to='/published-blogs'><li className="hover:text-secondery cursor-pointer flex items-center"><IoMdArrowDropleft className="text-3xl" />Published Blogs</li></Link>
+                                    <Link to='/fundings'><li className="hover:text-secondery cursor-pointer flex items-center"><IoMdArrowDropleft className="text-3xl" />Foundings</li></Link>
 
                                 </ul>
                             </div>
@@ -76,9 +76,9 @@ const Footer = () => {
                             <div className="flex flex-col space-y-2 ">
                                 <h1 className="text-3xl font-semibold font-lato">Contact Us</h1>
                                 <span className="w-20 h-[3px] rounded-full bg-primary"></span>
-                                <p className="flex items-center"><FaLocationDot className="text-xl text-secondery" /> Mymensingh-Fulbaria, Bangladesh</p>
-                                <p className="flex items-center"><IoCallSharp className="text-xl text-secondery" /> +01704995802</p>
-                                <p className="flex items-center"><MdEmail className="text-xl text-secondery mr-1" />skalmas634@gmail.com</p>
+                                <p className="flex "><FaLocationDot className="text-2xl text-white mt-1" /> Mymensingh-Fulbaria, Bangladesh</p>
+                                <p className="flex items-center"><IoCallSharp className="text-xl text-white" /> +01704995802</p>
+                                <p className="flex items-center"><MdEmail className="text-xl text-white mr-1" />skalmas634@gmail.com</p>
                             </div>
                         </div>
                         <hr />

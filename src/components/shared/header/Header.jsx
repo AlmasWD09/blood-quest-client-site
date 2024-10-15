@@ -12,13 +12,25 @@ const Header = () => {
     const { user, logOut } = useAuth();
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(true);
+    const [navbar, setNavbar] = useState(false)
 
     const handleNavigaet = () => {
         navigate('/')
     }
+    
+    // background color add in navbar scroll
+    const changeBackground = () => {
+      if (window.scrollY >= 32) {
+        setNavbar(true)
+      }
+      else { setNavbar(false) }
+    }
+    window.addEventListener('scroll', changeBackground)
+
+  
     return (
         <>
-            <header className="sticky top-0 left-0 z-[99999] shadow-md w-full   py-4 lg:py-6 bg-primaryGray overflow-y-hidden">
+            <header className={navbar ? 'bg-primaryGray sticky top-0 left-0 z-[99999] shadow-md w-full   py-4 lg:py-6  overflow-y-hidden' : 'sticky top-0 left-0 z-[99999] shadow-md w-full py-4 lg:py-6  overflow-y-hidden '}>
                 <Container>
                     <div className=" flex items-center">
                         <nav className="relative container flex justify-between items-center">
@@ -123,7 +135,8 @@ const Header = () => {
                                             <Link to='/dashboard' className="text-xl font-semibold font-lato text-primary">Dashboard</Link>
                                         </div>
                                     }
-                                    <Link to='/login'>
+                            
+                                     <Link to='/login'>
                                         <button className="text-lg font-semibold font-lato py-2">Login</button>
                                     </Link>
                                     {
@@ -140,7 +153,7 @@ const Header = () => {
                                             <Link to='/sign-up'>
                                                 <button className="w-full px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-secondery focus:outline-none focus:bg-secondery">Sign Up</button>
                                             </Link>
-                                    }
+                                    } 
 
                                 </div>
                             </div>
