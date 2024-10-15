@@ -29,6 +29,7 @@
 - [react-countup](https://www.npmjs.com/package/react-countup/)
 - [react-scroll-trigger](https://www.npmjs.com/package/react-scroll-trigger/)
 - [lottie-react](https://www.npmjs.com/package/lottie-react/)
+- [react-apexcharts](https://www.npmjs.com/package/react-apexcharts/)
 
 
 

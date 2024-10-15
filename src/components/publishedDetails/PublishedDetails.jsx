@@ -20,10 +20,14 @@ const PublishedDetails = () => {
         }
     });
 
-    const { _id, name,photo, image, title, status, content, postDate } = singlePublishedData || {};
+    const { _id, name, photo, image, title, status, content, postDate } = singlePublishedData || {};
+
+    // convert date formate
+    const date = new Date(postDate);
+    const formattedDate = date.toLocaleString();
 
     // Method 1: Using regex
-  const convertedContent = content?.replace(/<[^>]*>/g, '');
+    const convertedContent = content?.replace(/<[^>]*>/g, '');
 
     if (loading || isLoading) return <LoadindSpenier />
     return (
@@ -40,9 +44,8 @@ const PublishedDetails = () => {
                         <div>
                             <p><span className="text-xs font-medium text-blue-600 ">{status}</span> ({_id})</p>
                             <h3
-                                className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline"
+                                className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform hover:text-gray-600"
                                 tabIndex="0"
-                                role="link"
                             >
                                 {title}
                             </h3>
@@ -55,20 +58,19 @@ const PublishedDetails = () => {
                             <div className="flex items-center">
                                 <div className="flex items-center">
                                     <img
-                                        className="object-cover h-10 rounded-full ring-2"
+                                        className="object-cover h-10 w-10 rounded-full ring-2"
                                         src={photo}
                                         alt={name}
                                     />
-                                    <a
-                                        href="#"
+                                    <h3
                                         className="mx-2 font-semibold text-gray-700 "
                                         tabIndex="0"
                                         role="link"
                                     >
-                                        {user?.displayName}
-                                    </a>
+                                        {name}
+                                    </h3>
                                 </div>
-                                <span className="mx-1 text-xs text-gray-600 ">{postDate}</span>
+                                <span className="mx-1 text-xs text-gray-600 ">{formattedDate}</span>
                             </div>
                         </div>
                     </div>

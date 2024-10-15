@@ -88,7 +88,7 @@ const Header = () => {
                                                     className="w-full px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Logout</button>
                                                     :
                                                     <Link to='/sign-up'>
-                                                        <button className="w-full px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Sign Up</button>
+                                                        <button className="w-full px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-secondery focus:outline-none focus:bg-secondery">Sign Up</button>
                                                     </Link>
                                             }
                                         </div>
@@ -135,22 +135,10 @@ const Header = () => {
                                                     alt={user?.displayName}
                                                 />
                                             </div>
-
-
-                                            {/* navbar logout button here... */}
-                                            <div className="hidden group-hover:inline-block absolute -top-[80px] md:top-[40px] md:bottom-[-80px] md:right-0 z-[100000] bg-white text-black rounded-md shadow-sm px-4">
-                                                <span className="font-bold font-roboto text-secondery">
-                                                    {user?.displayName}
-                                                </span>
-                                                <h2 className="font-medium text-sm text-secondery">{user?.email}</h2>
-                                                <button
-                                                    onClick={logOut}
-                                                    className="absolute bg-gray-100 text-primary font-bold px-3 rounded ">Logout</button>
-                                            </div>
                                         </div>
                                             :
                                             <Link to='/sign-up'>
-                                                <button className="w-full px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Sign Up</button>
+                                                <button className="w-full px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-secondery focus:outline-none focus:bg-secondery">Sign Up</button>
                                             </Link>
                                     }
 

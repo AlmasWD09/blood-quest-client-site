@@ -26,8 +26,8 @@ const ContentManagement = () => {
         navigate('/dashboard/add-blog')
     }
     return (
-        <div>
-            <h1 className="text-xl md:text-2xl text-secondery font-bold text-center py-10 md:py-5  uppercase">Content Management volunteer</h1>
+        <div className="mt-20 lg:mt-0">
+            <h1 className="text-lg md:text-2xl text-secondery font-bold text-center py-10 md:py-5  uppercase">Content Management volunteer</h1>
             <div className="flex justify-center gap-6">
                 <button
                     onClick={handleBlog}
@@ -42,10 +42,11 @@ const ContentManagement = () => {
                     <option value="draft">draft</option>
                     <option value="published">published</option>
                 </select>
-
             </div>
-            {/* all blog curd here.... */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-16 px-4 lg:px-0">
+
+           <div className="lg:px-4 mt-8">
+             {/* all blog curd here.... */}
+             <div className="grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-5 px-4 ">
                 {
                     allBlogs.map((blog, idx) => {
                         return (
@@ -54,6 +55,7 @@ const ContentManagement = () => {
                     })
                 }
             </div>
+           </div>
         </div>
     );
 };

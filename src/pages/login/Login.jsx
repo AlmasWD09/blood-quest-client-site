@@ -35,8 +35,8 @@ const Login = () => {
     return (
         <>
             <Header />
-            <section className="">
-                <div className="flex items-center justify-center min-h-screen px-6 ">
+            <section className="mt-12 lg:-mt-8">
+                <div className="flex items-center justify-center lg:min-h-screen px-6 ">
                     <div className="relative bg-primaryGray w-full max-w-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-8 rounded-lg">
                         <form onSubmit={handleSubmit(onSubmit)} className="">
                             <div className="">
@@ -90,7 +90,7 @@ const Login = () => {
 
                             {/* login button */}
                             <div className="mt-6">
-                                <button type="submit" className="disabled:bg-gray-200 w-full disabled:cursor-not-allowed px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary rounded-lg ">
+                                <button type="submit" className="disabled:bg-gray-200 w-full disabled:cursor-not-allowed px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-secondery focus:outline-none focus:bg-secondery">
                                     Login
                                 </button>
 

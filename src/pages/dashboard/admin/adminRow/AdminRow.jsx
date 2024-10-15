@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 const AdminRow = ({ category, serial,refetch }) => {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
-  const { _id, upazila, status,requesterEmail, recipientName, donationTime, donationDate, district, } = category || {}
+  const { _id, upazila, status,requesterEmail, recipientName, donationDate, district, } = category || {}
 
   // user status change
   const handleChangeStatus = async (userStatusChange, id) => {
@@ -71,9 +71,6 @@ const AdminRow = ({ category, serial,refetch }) => {
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         {donationDate}
-      </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        {donationTime}
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         {status}

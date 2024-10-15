@@ -68,7 +68,7 @@ const CreateDonationForm = () => {
         }
     }
     return (
-        <div className="relative w-full max-w-4xl mx-auto bg-primaryGray shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] px-8 rounded-lg">
+        <div className="relative w-full bg-primaryGray shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] px-8 rounded-lg">
             <form onSubmit={handleSubmit(onSubmit)} className="">
                 {/* ********* input filed start ******* */}
                 <div className="flex flex-col md:flex-row gap-0 md:gap-4">
@@ -254,7 +254,7 @@ const CreateDonationForm = () => {
                 </div>
 
                 {/* request button */}
-                <div className="flex justify-center md:justify-end py-4 md:py-6">
+                <div className="flex justify-center md:justify-end py-4 md:py-6 lg:py-0">
                     <button type="submit" className="disabled:bg-gray-200  disabled:cursor-not-allowed p-2 md:px-6 md:py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary rounded-lg ">
                         Request Submit
                     </button>

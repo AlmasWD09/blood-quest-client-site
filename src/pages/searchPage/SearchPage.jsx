@@ -181,7 +181,7 @@ const SearchPage = () => {
                                     </div>
                                 </div>
                             ) : (
-                                <div className=" min-h-[450px] md:flex flex-col justify-center items-center hidden">
+                                <div className=" md:flex flex-col justify-center text-center">
                                     <p className="text-center text-red-500 font-bold text-2xl">No Data Found</p>
                                     <p>Does not match search value</p>
                                     <p>Please check navbar donation request view details page</p>

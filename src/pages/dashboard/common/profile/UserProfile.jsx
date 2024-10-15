@@ -54,11 +54,6 @@ const UserProfile = () => {
         }
     };
 
-
-
-
-
-
     const handleProfileEdit = () => {
         setDefaultData(true
         )
@@ -67,7 +62,7 @@ const UserProfile = () => {
     if (loading) return <LoadindSpenier />
     return (
         <>
-            <section className="">
+            <section className="mt-24 lg:mt-0">
                 <div className=" flex items-center justify-center min-h-screen px-6 ">
                     <div className="relative bg-primaryGray w-full max-w-2xl shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-8 rounded-lg">
                         <div className="flex justify-between">
