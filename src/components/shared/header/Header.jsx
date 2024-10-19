@@ -84,7 +84,6 @@ const Header = () => {
 
                                     </NavLink>
 
-
                                     {/* navbar Sign Up and login button */}
                                     <div className=" bg-secondery/50 rounded-md py-3">
                                         <div className="flex flex-col items-center gap-4">
