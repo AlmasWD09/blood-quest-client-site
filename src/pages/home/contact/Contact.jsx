@@ -97,7 +97,7 @@ const Contact = () => {
                                 </div>
                                 {/* contact button */}
                                 <div className="flex justify-start py-4 lg:py-6">
-                                    <button type="submit" className="p-2 md:px-6 md:py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary rounded-lg ">
+                                    <button type="submit" className="p-2 md:px-6 md:py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary hover:bg-[#991b1b] rounded-lg ">
                                         Send Message
                                     </button>
                                 </div>

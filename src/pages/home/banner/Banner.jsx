@@ -24,10 +24,10 @@ const Banner = () => {
                     <div className="flex gap-4 md:gap-6 py-3">
                         <button
                             onClick={handleClickDonar}
-                            className="px-2 md:px-5 py-2.5 leading-5 text-white font-semibold transition-colors duration-300 transform bg-primary rounded-md hover:bg-secondery focus:outline-none focus:bg-secondery">Join as a donor</button>
+                            className="px-2 md:px-5 py-2.5 leading-5 text-white font-semibold transition-colors duration-300 transform bg-primary rounded-md hover:bg-[#991b1b] focus:outline-none focus:bg-secondery">Join as a donor</button>
 
                         <button onClick={handleDonars}
-                            className="before:block before:absolute before:-inset-1 before:-skew-y-6 before:bg-secondery relative inline-block px-2 md:px-5 py-2.5 leading-5 before:rounded-md before:hover:bg-primary focus:outline-none before:focus:bg-primary">
+                            className="before:block before:absolute before:-inset-1 before:-skew-y-6 before:bg-secondery relative inline-block px-2 md:px-5 py-2.5 leading-5 before:rounded-md before:hover:bg-[#fca5a5] focus:outline-none before:focus:bg-primary">
                             <span className="relative text-white font-semibold ">Search donor</span>
                         </button>
                     </div>
